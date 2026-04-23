@@ -1,0 +1,54 @@
+---
+sidebar_position: 7
+title: Progress
+description: Thanh tiến trình với size, màu trạng thái và hiệu ứng striped.
+---
+
+# Progress
+
+Progress sử dụng `.gv-progress-wrap` cho track và `.gv-progress-bar` cho phần fill. Width của bar được điều khiển bằng inline style hoặc JavaScript.
+
+## Variants
+
+<div className="docs-demo">
+  <div className="docs-progress-block">
+    <div className="gv-progress-wrap">
+      <div className="gv-progress-bar" style={{ width: '45%' }} />
+    </div>
+    <div className="gv-progress-wrap">
+      <div className="gv-progress-bar gv-progress-success" style={{ width: '62%' }} />
+    </div>
+    <div className="gv-progress-wrap">
+      <div className="gv-progress-bar gv-progress-danger" style={{ width: '28%' }} />
+    </div>
+    <div className="gv-progress-wrap">
+      <div className="gv-progress-bar gv-progress-info gv-progress-striped gv-progress-animated" style={{ width: '74%' }} />
+    </div>
+  </div>
+</div>
+
+```html
+<div class="gv-progress-wrap">
+  <div class="gv-progress-bar gv-progress-success" style="width: 62%;"></div>
+</div>
+```
+
+## Kích thước
+
+<div className="docs-demo">
+  <div className="docs-progress-block">
+    <div className="gv-progress-sm">
+      <div className="gv-progress-wrap">
+        <div className="gv-progress-bar" style={{ width: '40%' }} />
+      </div>
+    </div>
+    <div className="gv-progress-wrap">
+      <div className="gv-progress-bar" style={{ width: '55%' }} />
+    </div>
+    <div className="gv-progress-lg">
+      <div className="gv-progress-wrap">
+        <div className="gv-progress-bar" style={{ width: '80%' }} />
+      </div>
+    </div>
+  </div>
+</div>

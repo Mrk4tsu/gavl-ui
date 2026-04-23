@@ -1,0 +1,88 @@
+---
+sidebar_position: 1
+title: Installation
+description: Hướng dẫn cài đặt GAVL UI vào dự án của bạn.
+---
+
+# Cài đặt GAVL UI
+
+GAVL UI là một thư viện CSS thuần — không cần JavaScript framework, không có dependency.
+Chỉ cần import một file CSS là dùng được ngay.
+
+---
+
+## Yêu cầu
+
+Trước khi bắt đầu, hãy thêm **Be Vietnam Pro** vào `<head>` để đảm bảo body font hiển thị đúng:
+
+```html
+<link
+  href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800&display=swap"
+  rel="stylesheet"
+/>
+```
+
+:::info[Tại sao cần 2 font?]
+
+- **SVN Determination Sans** — font pixel nội bộ dùng cho `.gv-display-*`, `.gv-label`, `.gv-btn-pixel`, hỗ trợ tiếng Việt tốt hơn
+- **Be Vietnam Pro** — font body dùng cho `.gv-heading-*` và toàn bộ text content dài để giữ độ đọc ổn định
+
+:::
+
+---
+
+## Cài qua npm
+
+```bash
+npm install gavl-ui
+```
+
+Sau đó import vào entry point của dự án:
+
+```js
+import 'gavl-ui/dist/gavl-ui.css';
+```
+
+---
+
+## Cài qua CDN
+
+Không cần build tool, chỉ cần thêm thẳng vào HTML:
+
+```html
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/gavl-ui/dist/gavl-ui.css"
+/>
+```
+
+---
+
+## Dùng file CSS trực tiếp
+
+Tải file về và đặt vào project:
+
+```html
+<link rel="stylesheet" href="/css/gavl-ui.css" />
+```
+
+---
+
+## Kiểm tra hoạt động
+
+Sau khi import xong, thêm đoạn HTML này để xác nhận thư viện đã load:
+
+```html
+<div class="gv-root">
+  <button class="gv-btn gv-btn-primary">⚔ GAVL UI hoạt động!</button>
+</div>
+```
+
+Nếu button hiển thị màu gold với pixel shadow — bạn đã cài đặt thành công.
+
+---
+
+## Bước tiếp theo
+
+- Xem [Design Tokens](/docs/getting-started/design-tokens) để hiểu hệ thống màu sắc và spacing
+- Đọc [Button](/docs/components/button) để bắt đầu dùng component đầu tiên

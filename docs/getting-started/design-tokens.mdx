@@ -1,0 +1,667 @@
+---
+sidebar_position: 2
+title: Design Tokens
+description: Hệ thống màu sắc, font, spacing và shadow của GAVL UI.
+---
+
+# Design Tokens
+
+GAVL UI dùng **CSS Custom Properties** (biến CSS) cho toàn bộ design system.
+Bạn có thể override bất kỳ token nào bằng cách khai báo lại trong `:root`.
+
+---
+
+## Màu sắc
+
+<div className="token-showcase-intro">
+  <p>
+    Bảng màu của GAVL UI được chia theo từng nhóm chức năng để bạn nhìn nhanh được vai trò
+    của từng token, không chỉ giá trị hex.
+  </p>
+</div>
+
+### Brown — Nền tảng
+
+<div className="token-grid">
+  <div className="token-card">
+    <div className="token-swatch" style={{ backgroundColor: '#1a1008' }} />
+    <code>--gv-brown-darkest</code>
+    <strong>#1a1008</strong>
+    <span>Nền tối nhất, shadow</span>
+  </div>
+  <div className="token-card">
+    <div className="token-swatch" style={{ backgroundColor: '#2a1f14' }} />
+    <code>--gv-brown-dark</code>
+    <strong>#2a1f14</strong>
+    <span>Text chính, nền section tối</span>
+  </div>
+  <div className="token-card">
+    <div className="token-swatch" style={{ backgroundColor: '#5c3d1e' }} />
+    <code>--gv-brown-mid</code>
+    <strong>#5c3d1e</strong>
+    <span>Border, icon phụ</span>
+  </div>
+  <div className="token-card">
+    <div className="token-swatch" style={{ backgroundColor: '#c8a06e' }} />
+    <code>--gv-brown-light</code>
+    <strong>#c8a06e</strong>
+    <span>Text muted, separator</span>
+  </div>
+</div>
+
+### Cream — Nền sáng
+
+<div className="token-grid">
+  <div className="token-card token-card--light">
+    <div className="token-swatch" style={{ backgroundColor: '#f5e9d3' }} />
+    <code>--gv-cream</code>
+    <strong>#f5e9d3</strong>
+    <span>Nền chính</span>
+  </div>
+  <div className="token-card token-card--light">
+    <div className="token-swatch" style={{ backgroundColor: '#ede0c4' }} />
+    <code>--gv-cream-2</code>
+    <strong>#ede0c4</strong>
+    <span>Nền card, input</span>
+  </div>
+  <div className="token-card token-card--light">
+    <div className="token-swatch" style={{ backgroundColor: '#e4d5b0' }} />
+    <code>--gv-cream-3</code>
+    <strong>#e4d5b0</strong>
+    <span>Hover state, divider</span>
+  </div>
+</div>
+
+### Gold — Accent chính
+
+<div className="token-grid">
+  <div className="token-card">
+    <div className="token-swatch" style={{ backgroundColor: '#e6b44c' }} />
+    <code>--gv-gold</code>
+    <strong>#e6b44c</strong>
+    <span>Button primary, highlight</span>
+  </div>
+  <div className="token-card">
+    <div className="token-swatch" style={{ backgroundColor: '#c9952a' }} />
+    <code>--gv-gold-dark</code>
+    <strong>#c9952a</strong>
+    <span>Border gold, hover</span>
+  </div>
+  <div className="token-card">
+    <div className="token-swatch" style={{ backgroundColor: '#f5ce7a' }} />
+    <code>--gv-gold-light</code>
+    <strong>#f5ce7a</strong>
+    <span>Hover bg button</span>
+  </div>
+</div>
+
+### Màu trạng thái
+
+<div className="token-grid">
+  <div className="token-card">
+    <div className="token-swatch" style={{ backgroundColor: '#4a90d9' }} />
+    <code>--gv-blue</code>
+    <strong>#4a90d9</strong>
+    <span>Info</span>
+  </div>
+  <div className="token-card">
+    <div className="token-swatch" style={{ backgroundColor: '#2d6baa' }} />
+    <code>--gv-blue-dark</code>
+    <strong>#2d6baa</strong>
+    <span>Info dark</span>
+  </div>
+  <div className="token-card token-card--light">
+    <div className="token-swatch" style={{ backgroundColor: '#7ab8f0' }} />
+    <code>--gv-blue-light</code>
+    <strong>#7ab8f0</strong>
+    <span>Info light</span>
+  </div>
+  <div className="token-card">
+    <div className="token-swatch" style={{ backgroundColor: '#e05252' }} />
+    <code>--gv-red</code>
+    <strong>#e05252</strong>
+    <span>Danger</span>
+  </div>
+  <div className="token-card">
+    <div className="token-swatch" style={{ backgroundColor: '#b83a3a' }} />
+    <code>--gv-red-dark</code>
+    <strong>#b83a3a</strong>
+    <span>Danger dark</span>
+  </div>
+  <div className="token-card token-card--light">
+    <div className="token-swatch" style={{ backgroundColor: '#f07878' }} />
+    <code>--gv-red-light</code>
+    <strong>#f07878</strong>
+    <span>Danger light</span>
+  </div>
+  <div className="token-card">
+    <div className="token-swatch" style={{ backgroundColor: '#5ab552' }} />
+    <code>--gv-green</code>
+    <strong>#5ab552</strong>
+    <span>Success</span>
+  </div>
+  <div className="token-card">
+    <div className="token-swatch" style={{ backgroundColor: '#3a8c34' }} />
+    <code>--gv-green-dark</code>
+    <strong>#3a8c34</strong>
+    <span>Success dark</span>
+  </div>
+  <div className="token-card token-card--light">
+    <div className="token-swatch" style={{ backgroundColor: '#82d67a' }} />
+    <code>--gv-green-light</code>
+    <strong>#82d67a</strong>
+    <span>Success light</span>
+  </div>
+  <div className="token-card token-card--light">
+    <div className="token-swatch" style={{ backgroundColor: '#f0c830' }} />
+    <code>--gv-yellow</code>
+    <strong>#f0c830</strong>
+    <span>Warning</span>
+  </div>
+  <div className="token-card">
+    <div className="token-swatch" style={{ backgroundColor: '#9b72cf' }} />
+    <code>--gv-purple</code>
+    <strong>#9b72cf</strong>
+    <span>Special</span>
+  </div>
+  <div className="token-card">
+    <div className="token-swatch" style={{ backgroundColor: '#7450a8' }} />
+    <code>--gv-purple-dark</code>
+    <strong>#7450a8</strong>
+    <span>Special dark</span>
+  </div>
+</div>
+
+### Grayscale
+
+<div className="token-grid">
+  <div className="token-card token-card--light">
+    <div className="token-swatch token-swatch--bordered" style={{ backgroundColor: '#ffffff' }} />
+    <code>--gv-white</code>
+    <strong>#ffffff</strong>
+  </div>
+  <div className="token-card token-card--light">
+    <div className="token-swatch" style={{ backgroundColor: '#f0f0f0' }} />
+    <code>--gv-gray-1</code>
+    <strong>#f0f0f0</strong>
+  </div>
+  <div className="token-card token-card--light">
+    <div className="token-swatch" style={{ backgroundColor: '#cccccc' }} />
+    <code>--gv-gray-2</code>
+    <strong>#cccccc</strong>
+  </div>
+  <div className="token-card">
+    <div className="token-swatch" style={{ backgroundColor: '#888888' }} />
+    <code>--gv-gray-3</code>
+    <strong>#888888</strong>
+  </div>
+  <div className="token-card">
+    <div className="token-swatch" style={{ backgroundColor: '#555555' }} />
+    <code>--gv-gray-4</code>
+    <strong>#555555</strong>
+  </div>
+</div>
+
+---
+
+## Typography
+
+GAVL UI dùng 2 font riêng biệt với mục đích khác nhau:
+
+<div className="type-family-grid">
+  <div className="type-family-card type-family-card--pixel">
+    <span className="type-family-eyebrow">Pixel font</span>
+    <h4>SVN Determination Sans</h4>
+    <p className="type-family-preview">NHIEM VU MOI</p>
+    <code>--gv-font-pixel</code>
+    <span className="type-family-note">Dùng cho label, display heading và pixel UI text có hỗ trợ tiếng Việt.</span>
+  </div>
+  <div className="type-family-card type-family-card--body">
+    <span className="type-family-eyebrow">Body font</span>
+    <h4>Be Vietnam Pro</h4>
+    <p className="type-family-preview">Giao diện rõ ràng, hỗ trợ tiếng Việt đầy đủ.</p>
+    <code>--gv-font-body</code>
+    <span className="type-family-note">Dùng cho heading tiếng Việt, paragraph và nội dung dài.</span>
+  </div>
+</div>
+
+:::tip[Quan trọng]
+`SVN Determination Sans` hỗ trợ tiếng Việt tốt hơn cho các lớp pixel.
+Với paragraph dài hoặc heading cần độ đọc cao, `.gv-heading-*` và body font vẫn là lựa chọn ổn định hơn.
+:::
+
+### Display — Pixel font
+
+<div className="type-scale-list">
+  <div className="type-scale-card type-scale-card--pixel">
+    <div className="type-scale-meta"><code>.gv-display-1</code><span>24px</span><span>Hero title, logo</span></div>
+    <p className="type-scale-preview type-scale-preview--d1">NHIỆM VỤ HUYỀN THOẠI</p>
+  </div>
+  <div className="type-scale-card type-scale-card--pixel">
+    <div className="type-scale-meta"><code>.gv-display-2</code><span>18px</span><span>Section title lớn</span></div>
+    <p className="type-scale-preview type-scale-preview--d2">CHỌN MÀN CHƠI</p>
+  </div>
+  <div className="type-scale-card type-scale-card--pixel">
+    <div className="type-scale-meta"><code>.gv-display-3</code><span>14px</span><span>Sub-section title</span></div>
+    <p className="type-scale-preview type-scale-preview--d3">HÀNH TRANG</p>
+  </div>
+  <div className="type-scale-card type-scale-card--pixel">
+    <div className="type-scale-meta"><code>.gv-display-4</code><span>10px</span><span>Card title</span></div>
+    <p className="type-scale-preview type-scale-preview--d4">VẬT PHẨM</p>
+  </div>
+  <div className="type-scale-card type-scale-card--pixel">
+    <div className="type-scale-meta"><code>.gv-display-5</code><span>8px</span><span>Label, tag</span></div>
+    <p className="type-scale-preview type-scale-preview--d5">MANA ĐẦY</p>
+  </div>
+  <div className="type-scale-card type-scale-card--pixel">
+    <div className="type-scale-meta"><code>.gv-display-6</code><span>7px</span><span>Caption nhỏ</span></div>
+    <p className="type-scale-preview type-scale-preview--d6">LƯU GAME</p>
+  </div>
+</div>
+
+### Heading — Body font (hỗ trợ tiếng Việt)
+
+<div className="type-scale-list">
+  <div className="type-scale-card">
+    <div className="type-scale-meta"><code>.gv-heading-1</code><span>28px</span><span>800</span></div>
+    <p className="type-scale-preview type-scale-preview--h1">Thiết kế giao diện mang cảm giác game retro</p>
+  </div>
+  <div className="type-scale-card">
+    <div className="type-scale-meta"><code>.gv-heading-2</code><span>22px</span><span>800</span></div>
+    <p className="type-scale-preview type-scale-preview--h2">Tiêu đề section rõ ràng, dễ quét nhanh</p>
+  </div>
+  <div className="type-scale-card">
+    <div className="type-scale-meta"><code>.gv-heading-3</code><span>18px</span><span>700</span></div>
+    <p className="type-scale-preview type-scale-preview--h3">Heading cấp nhỏ cho card và content block</p>
+  </div>
+  <div className="type-scale-card">
+    <div className="type-scale-meta"><code>.gv-heading-4</code><span>16px</span><span>700</span></div>
+    <p className="type-scale-preview type-scale-preview--h4">Tiêu đề phụ cân bằng giữa thẩm mỹ và mật độ</p>
+  </div>
+</div>
+
+### Body text
+
+<div className="type-scale-list">
+  <div className="type-scale-card">
+    <div className="type-scale-meta"><code>.gv-text-xl</code><span>20px</span><span>700</span></div>
+    <p className="type-scale-preview type-scale-preview--xl">Đoạn intro nổi bật để dẫn vào nội dung chính.</p>
+  </div>
+  <div className="type-scale-card">
+    <div className="type-scale-meta"><code>.gv-text-lg</code><span>17px</span><span>600</span></div>
+    <p className="type-scale-preview type-scale-preview--lg">Text lớn cho mô tả ngắn, stat và content cần nhấn mạnh.</p>
+  </div>
+  <div className="type-scale-card">
+    <div className="type-scale-meta"><code>.gv-text-md</code><span>15px</span><span>400</span></div>
+    <p className="type-scale-preview type-scale-preview--md">Kích thước mặc định phù hợp cho phần lớn đoạn văn trong tài liệu.</p>
+  </div>
+  <div className="type-scale-card">
+    <div className="type-scale-meta"><code>.gv-text-sm</code><span>13px</span><span>400</span></div>
+    <p className="type-scale-preview type-scale-preview--sm">Dùng cho note phụ, caption hoặc thông tin mật độ cao.</p>
+  </div>
+  <div className="type-scale-card">
+    <div className="type-scale-meta"><code>.gv-text-xs</code><span>11px</span><span>500</span></div>
+    <p className="type-scale-preview type-scale-preview--xs">Metadata, hint text và trạng thái phụ.</p>
+  </div>
+  <div className="type-scale-card">
+    <div className="type-scale-meta"><code>.gv-text-2xs</code><span>10px</span><span>600</span></div>
+    <p className="type-scale-preview type-scale-preview--2xs">UI microcopy cho chip, tag, counter.</p>
+  </div>
+</div>
+
+### Line-height cho tiếng Việt
+
+<div className="line-height-grid">
+  <div className="line-height-card">
+    <div className="line-height-meta">
+      <code>--gv-lh-vi</code>
+      <strong>1.75</strong>
+      <span>Text body dài</span>
+    </div>
+    <p>
+      Dùng cho đoạn văn tiếng Việt nhiều dấu để nhịp đọc thoáng hơn, tránh cảm giác bí chữ khi
+      nội dung kéo dài qua nhiều dòng.
+    </p>
+  </div>
+  <div className="line-height-card">
+    <div className="line-height-meta">
+      <code>--gv-lh-vi-tight</code>
+      <strong>1.5</strong>
+      <span>Heading tiếng Việt</span>
+    </div>
+    <p>
+      Giữ tiêu đề gọn và chắc hơn, phù hợp cho heading nhiều từ nhưng vẫn cần độ nén thị giác.
+    </p>
+  </div>
+</div>
+
+---
+
+## Spacing
+
+<div className="spacing-intro">
+  <p>
+    Spacing scale của GAVL UI được xây từ nhịp 4px để padding, gap và margin giữ cùng một tiết
+    tấu xuyên suốt toàn bộ giao diện.
+  </p>
+</div>
+
+<div className="spacing-scale-list">
+  <div className="spacing-scale-card">
+    <div className="spacing-scale-meta"><code>--gv-space-1</code><strong>4px</strong><span>0.25rem</span></div>
+    <div className="spacing-bar"><div className="spacing-bar-fill spacing-bar-fill--1" /></div>
+    <p>Inset siêu nhỏ cho icon, chip và khoảng đệm tinh chỉnh.</p>
+  </div>
+  <div className="spacing-scale-card">
+    <div className="spacing-scale-meta"><code>--gv-space-2</code><strong>8px</strong><span>0.5rem</span></div>
+    <div className="spacing-bar"><div className="spacing-bar-fill spacing-bar-fill--2" /></div>
+    <p>Gap cơ bản giữa icon và label hoặc giữa các control sát nhau.</p>
+  </div>
+  <div className="spacing-scale-card">
+    <div className="spacing-scale-meta"><code>--gv-space-3</code><strong>12px</strong><span>0.75rem</span></div>
+    <div className="spacing-bar"><div className="spacing-bar-fill spacing-bar-fill--3" /></div>
+    <p>Khoảng cách ổn cho field, list item và row content cỡ nhỏ.</p>
+  </div>
+  <div className="spacing-scale-card">
+    <div className="spacing-scale-meta"><code>--gv-space-4</code><strong>16px</strong><span>1rem</span></div>
+    <div className="spacing-bar"><div className="spacing-bar-fill spacing-bar-fill--4" /></div>
+    <p>Mức mặc định cho padding card, block content và component phổ biến.</p>
+  </div>
+  <div className="spacing-scale-card">
+    <div className="spacing-scale-meta"><code>--gv-space-5</code><strong>24px</strong><span>1.5rem</span></div>
+    <div className="spacing-bar"><div className="spacing-bar-fill spacing-bar-fill--5" /></div>
+    <p>Dùng để tách group nội dung hoặc tạo breathing room cho section nhỏ.</p>
+  </div>
+  <div className="spacing-scale-card">
+    <div className="spacing-scale-meta"><code>--gv-space-6</code><strong>32px</strong><span>2rem</span></div>
+    <div className="spacing-bar"><div className="spacing-bar-fill spacing-bar-fill--6" /></div>
+    <p>Section spacing rõ ràng cho layout lớn, hero block hoặc panel chính.</p>
+  </div>
+  <div className="spacing-scale-card">
+    <div className="spacing-scale-meta"><code>--gv-space-7</code><strong>48px</strong><span>3rem</span></div>
+    <div className="spacing-bar"><div className="spacing-bar-fill spacing-bar-fill--7" /></div>
+    <p>Khoảng thở lớn giữa các cụm nội dung cấp cao trên landing page hoặc docs.</p>
+  </div>
+</div>
+
+Dùng với utility class:
+
+```html
+<div class="gv-mt-4 gv-mb-5 gv-p-4">...</div>
+```
+
+<div className="spacing-demo-grid">
+  <div className="spacing-demo-card">
+    <div className="spacing-demo-meta">
+      <code>.gv-p-4</code>
+      <span>padding 16px</span>
+    </div>
+    <div className="spacing-demo-frame">
+      <div className="spacing-demo-inner spacing-demo-inner--p4">
+        <div className="spacing-demo-content">Card content</div>
+      </div>
+    </div>
+  </div>
+  <div className="spacing-demo-card">
+    <div className="spacing-demo-meta">
+      <code>.gv-mb-5</code>
+      <span>margin-bottom 24px</span>
+    </div>
+    <div className="spacing-demo-stack">
+      <div className="spacing-demo-block">Block A</div>
+      <div className="spacing-demo-gap spacing-demo-gap--5" />
+      <div className="spacing-demo-block spacing-demo-block--muted">Block B</div>
+    </div>
+  </div>
+  <div className="spacing-demo-card">
+    <div className="spacing-demo-meta">
+      <code>.gv-gap-3</code>
+      <span>gap 12px</span>
+    </div>
+    <div className="spacing-demo-row">
+      <div className="spacing-demo-chip">HP</div>
+      <div className="spacing-demo-chip spacing-demo-chip--gap" />
+      <div className="spacing-demo-chip">MP</div>
+      <div className="spacing-demo-chip spacing-demo-chip--gap" />
+      <div className="spacing-demo-chip">ATK</div>
+    </div>
+  </div>
+</div>
+
+---
+
+## Shadow — Pixel style
+
+GAVL UI dùng **flat shadow** (không blur) để giữ phong cách pixel:
+
+<div className="shadow-intro">
+  <p>
+    Thay vì dùng blur mềm kiểu modern SaaS, GAVL UI dùng shadow vuông, sắc cạnh để giữ cảm giác
+    retro và tạo chiều sâu theo đúng ngôn ngữ pixel UI.
+  </p>
+</div>
+
+<div className="shadow-grid">
+  <div className="shadow-card">
+    <div className="shadow-meta"><code>--gv-shadow-sm</code><strong>2px 2px 0</strong></div>
+    <div className="shadow-preview">
+      <div className="shadow-preview-box shadow-preview-box--sm">SM</div>
+    </div>
+    <p>Nhẹ nhất, phù hợp cho chip, tag, control nhỏ và icon button.</p>
+  </div>
+  <div className="shadow-card">
+    <div className="shadow-meta"><code>--gv-shadow-md</code><strong>3px 3px 0</strong></div>
+    <div className="shadow-preview">
+      <div className="shadow-preview-box shadow-preview-box--md">MD</div>
+    </div>
+    <p>Mức mặc định cân bằng cho button, input, card cơ bản.</p>
+  </div>
+  <div className="shadow-card">
+    <div className="shadow-meta"><code>--gv-shadow-lg</code><strong>4px 4px 0</strong></div>
+    <div className="shadow-preview">
+      <div className="shadow-preview-box shadow-preview-box--lg">LG</div>
+    </div>
+    <p>Tăng chiều sâu rõ hơn cho panel, modal nhỏ hoặc stat card.</p>
+  </div>
+  <div className="shadow-card">
+    <div className="shadow-meta"><code>--gv-shadow-xl</code><strong>6px 6px 0</strong></div>
+    <div className="shadow-preview">
+      <div className="shadow-preview-box shadow-preview-box--xl">XL</div>
+    </div>
+    <p>Dùng cho hero block hoặc component cần nổi bật mạnh trên layout.</p>
+  </div>
+</div>
+
+Ví dụ sử dụng:
+
+```css
+.my-card {
+  box-shadow: var(--gv-shadow-md) var(--gv-brown-mid);
+}
+```
+
+<div className="shadow-demo-card">
+  <div className="shadow-demo-meta">
+    <code>box-shadow: var(--gv-shadow-md) var(--gv-brown-mid);</code>
+  </div>
+  <div className="shadow-demo-stage">
+    <div className="shadow-demo-panel">
+      <span className="shadow-demo-eyebrow">Quest Panel</span>
+      <h4>Pixel elevation không dùng blur</h4>
+      <p>
+        Shadow tách panel khỏi nền bằng offset rõ ràng, giúp component nổi lên mà vẫn giữ texture
+        retro.
+      </p>
+    </div>
+  </div>
+</div>
+
+---
+
+## Border
+
+<div className="border-grid">
+  <div className="border-card">
+    <div className="border-meta"><code>--gv-border</code><strong>2px solid var(--gv-brown-mid)</strong></div>
+    <div className="border-preview">
+      <div className="border-preview-box border-preview-box--default">Default border</div>
+    </div>
+    <p>Stroke tiêu chuẩn cho button, input, card và khối UI chính.</p>
+  </div>
+  <div className="border-card">
+    <div className="border-meta"><code>--gv-border-gold</code><strong>2px solid var(--gv-gold)</strong></div>
+    <div className="border-preview">
+      <div className="border-preview-box border-preview-box--gold">Accent border</div>
+    </div>
+    <p>Dùng để highlight state chủ đạo, CTA hoặc vùng cần nhấn mạnh.</p>
+  </div>
+  <div className="border-card">
+    <div className="border-meta"><code>--gv-border-sm</code><strong>1px solid var(--gv-brown-light)</strong></div>
+    <div className="border-preview">
+      <div className="border-preview-box border-preview-box--soft">Subtle border</div>
+    </div>
+    <p>Nhẹ hơn cho separator, panel phụ hoặc lớp phân tách tinh tế.</p>
+  </div>
+</div>
+
+---
+
+## Border Radius
+
+<div className="radius-grid">
+  <div className="radius-card">
+    <div className="radius-meta"><code>--gv-radius-sm</code><strong>4px</strong></div>
+    <div className="radius-preview">
+      <div className="radius-preview-box radius-preview-box--sm">SM</div>
+    </div>
+    <p>Bo nhẹ cho chip, input nhỏ và component cần cảm giác chặt.</p>
+  </div>
+  <div className="radius-card">
+    <div className="radius-meta"><code>--gv-radius-md</code><strong>8px</strong></div>
+    <div className="radius-preview">
+      <div className="radius-preview-box radius-preview-box--md">MD</div>
+    </div>
+    <p>Mức cân bằng cho phần lớn card, button và field tiêu chuẩn.</p>
+  </div>
+  <div className="radius-card">
+    <div className="radius-meta"><code>--gv-radius-lg</code><strong>12px</strong></div>
+    <div className="radius-preview">
+      <div className="radius-preview-box radius-preview-box--lg">LG</div>
+    </div>
+    <p>Hợp với panel lớn, media block hoặc UI cần cảm giác mềm hơn.</p>
+  </div>
+  <div className="radius-card">
+    <div className="radius-meta"><code>--gv-radius-xl</code><strong>16px</strong></div>
+    <div className="radius-preview">
+      <div className="radius-preview-box radius-preview-box--xl">XL</div>
+    </div>
+    <p>Dành cho hero card, modal lớn và layout có nhịp bo rõ ràng.</p>
+  </div>
+</div>
+
+---
+
+## Transition
+
+<div className="transition-card">
+  <div className="transition-meta">
+    <code>--gv-transition</code>
+    <strong>all 0.15s ease</strong>
+  </div>
+  <div className="transition-stage">
+    <div className="transition-panel">
+      <div className="transition-state transition-state--from">
+        <span className="transition-label">Before</span>
+        <div className="transition-button">Hover me</div>
+      </div>
+      <div className="transition-arrow">→</div>
+      <div className="transition-state transition-state--to">
+        <span className="transition-label">After</span>
+        <div className="transition-button transition-button--hovered">Hover me</div>
+      </div>
+    </div>
+  </div>
+  <p>
+    Transition ngắn và gọn giúp hover, focus, press state mượt vừa đủ mà không phá nhịp pixel UI.
+  </p>
+</div>
+
+#### Thử tương tác
+
+<p>Rê chuột vào các ví dụ bên dưới để xem `transition` hoạt động trực tiếp trên UI.</p>
+
+<div className="transition-live-grid">
+  <div className="transition-live-card">
+    <div className="transition-live-meta">
+      <code>Button hover / press</code>
+      <span>Dùng cho CTA, action button</span>
+    </div>
+    <button type="button" className="transition-live-button">
+      Bắt đầu nhiệm vụ
+    </button>
+  </div>
+  <div className="transition-live-card">
+    <div className="transition-live-meta">
+      <code>Card hover lift</code>
+      <span>Dùng cho panel, item list, stat block</span>
+    </div>
+    <div className="transition-live-surface">
+      <div className="transition-live-panel">
+        <span className="transition-live-eyebrow">Quest reward</span>
+        <strong>+120 XP</strong>
+        <p>Hover để xem panel nổi lên với border, shadow và translate đồng bộ.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+```css title="Button interaction"
+.demo-button {
+  transition: var(--gv-transition);
+}
+
+.demo-button:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--gv-gold-dark);
+}
+
+.demo-button:active {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 var(--gv-gold-dark);
+}
+```
+
+```css title="Card hover lift"
+.demo-panel {
+  transition: var(--gv-transition);
+}
+
+.demo-panel:hover {
+  transform: translate(-2px, -2px);
+  border-color: var(--gv-gold-dark);
+  box-shadow: 5px 5px 0 var(--gv-brown-mid);
+}
+```
+
+---
+
+## Override token
+
+Bạn có thể customize toàn bộ theme chỉ bằng cách override biến trong CSS của mình:
+
+```css
+/* Đổi màu gold thành xanh dương */
+:root {
+  --gv-gold:       #4a90d9;
+  --gv-gold-dark:  #2d6baa;
+  --gv-gold-light: #7ab8f0;
+}
+```
+
+Hoặc chỉ override cho một component cụ thể:
+
+```css
+.my-special-btn {
+  --gv-gold: #ff6b35;
+}
+```

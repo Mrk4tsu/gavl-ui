@@ -1,0 +1,46 @@
+---
+sidebar_position: 8
+title: Toast
+description: Thông báo nổi tạm thời với container cố định ở góc màn hình.
+---
+
+# Toast
+
+Toast dùng `.gv-toast-container` để neo vị trí và `.gv-toast` cho từng message. Vì đây là CSS library, logic thêm hoặc xóa toast sẽ do JavaScript của ứng dụng xử lý.
+
+## Variants
+
+<div className="docs-demo docs-toast-preview">
+  <div className="gv-toast-container">
+    <div className="gv-toast gv-toast-success">
+      <span className="gv-toast-icon">✔</span>
+      Cài đặt thành công
+      <button type="button" className="gv-toast-close" aria-label="Close">×</button>
+    </div>
+    <div className="gv-toast gv-toast-warning">
+      <span className="gv-toast-icon">⚠</span>
+      Cần nạp body font Be Vietnam Pro
+      <button type="button" className="gv-toast-close" aria-label="Close">×</button>
+    </div>
+    <div className="gv-toast gv-toast-danger">
+      <span className="gv-toast-icon">✖</span>
+      Không tìm thấy file bundle
+      <button type="button" className="gv-toast-close" aria-label="Close">×</button>
+    </div>
+  </div>
+</div>
+
+```html
+<div class="gv-toast-container">
+  <div class="gv-toast gv-toast-success">
+    <span class="gv-toast-icon">✔</span>
+    Cài đặt thành công
+    <button class="gv-toast-close">×</button>
+  </div>
+</div>
+```
+
+## Khi nào dùng toast
+
+- Xác nhận action ngắn: lưu thành công, sao chép, cập nhật xong.
+- Không nên dùng cho nội dung dài hoặc action cần người dùng đọc kỹ.

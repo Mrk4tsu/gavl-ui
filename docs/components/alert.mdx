@@ -1,0 +1,54 @@
+---
+sidebar_position: 4
+title: Alert
+description: Khối thông báo trạng thái cho info, success, warning và danger.
+---
+
+# Alert
+
+Alert dùng để hiển thị thông báo nội tuyến. Base class là `.gv-alert`, thường ghép thêm `.gv-alert-info`, `.gv-alert-success`, `.gv-alert-warning`, `.gv-alert-danger`.
+
+## Variants
+
+<div className="docs-demo">
+  <div className="docs-demo-stack">
+    <div className="gv-alert gv-alert-info">
+      <span className="gv-alert-icon">ℹ</span>
+      <div>
+        <div className="gv-alert-title">Info</div>
+        Cần nạp thêm font trước khi dùng đầy đủ UI tiếng Việt.
+      </div>
+    </div>
+    <div className="gv-alert gv-alert-success">
+      <span className="gv-alert-icon">✔</span>
+      <div>
+        <div className="gv-alert-title">Success</div>
+        Theme đã được import thành công.
+      </div>
+    </div>
+    <div className="gv-alert gv-alert-warning">
+      <span className="gv-alert-icon">⚠</span>
+      <div>
+        <div className="gv-alert-title">Warning</div>
+        Alert dài vẫn nên ưu tiên body font để giữ độ đọc ổn định.
+      </div>
+    </div>
+    <div className="gv-alert gv-alert-danger">
+      <span className="gv-alert-icon">✖</span>
+      <div>
+        <div className="gv-alert-title">Danger</div>
+        Không tìm thấy file CSS trong bundle hiện tại.
+      </div>
+    </div>
+  </div>
+</div>
+
+```html
+<div class="gv-alert gv-alert-warning">
+  <span class="gv-alert-icon">⚠</span>
+  <div>
+    <div class="gv-alert-title">Warning</div>
+    Alert dài vẫn nên ưu tiên body font để giữ độ đọc ổn định.
+  </div>
+</div>
+```

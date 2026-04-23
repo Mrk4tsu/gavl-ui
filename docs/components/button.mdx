@@ -1,0 +1,99 @@
+---
+sidebar_position: 1
+title: Button
+description: Nút hành động chính của GAVL UI với nhiều biến thể màu, kích thước và trạng thái.
+---
+
+# Button
+
+`Button` là component hành động cơ bản nhất trong GAVL UI. Nền tảng của button là `.gv-btn`, sau đó ghép thêm variant, size hoặc behavior class theo nhu cầu.
+
+## Cấu trúc cơ bản
+
+```html
+<button class="gv-btn gv-btn-primary">Bắt đầu</button>
+```
+
+## Variants
+
+<div className="docs-demo">
+  <div className="docs-demo-inline">
+    <button type="button" className="gv-btn gv-btn-primary">Primary</button>
+    <button type="button" className="gv-btn gv-btn-secondary">Secondary</button>
+    <button type="button" className="gv-btn gv-btn-dark">Dark</button>
+    <button type="button" className="gv-btn gv-btn-danger">Danger</button>
+    <button type="button" className="gv-btn gv-btn-success">Success</button>
+    <button type="button" className="gv-btn gv-btn-info">Info</button>
+    <button type="button" className="gv-btn gv-btn-purple">Purple</button>
+    <button type="button" className="gv-btn gv-btn-ghost">Ghost</button>
+    <button type="button" className="gv-btn gv-btn-link">Link</button>
+  </div>
+</div>
+
+| Class | Mục đích |
+|---|---|
+| `.gv-btn-primary` | CTA chính, hành động nổi bật |
+| `.gv-btn-secondary` | Hành động phụ |
+| `.gv-btn-dark` | Nút trên nền sáng cần tương phản mạnh |
+| `.gv-btn-danger` | Xóa, hủy, hành động phá hủy |
+| `.gv-btn-success` | Xác nhận, hoàn tất |
+| `.gv-btn-info` | Thông tin, điều hướng mềm |
+| `.gv-btn-purple` | Accent phụ, special action |
+| `.gv-btn-ghost` | Hành động nhẹ |
+| `.gv-btn-link` | Hành vi giống text link |
+
+## Kích thước
+
+<div className="docs-demo">
+  <div className="docs-demo-inline">
+    <button type="button" className="gv-btn gv-btn-primary gv-btn-xs">XS</button>
+    <button type="button" className="gv-btn gv-btn-primary gv-btn-sm">SM</button>
+    <button type="button" className="gv-btn gv-btn-primary">Default</button>
+    <button type="button" className="gv-btn gv-btn-primary gv-btn-lg">LG</button>
+    <button type="button" className="gv-btn gv-btn-primary gv-btn-xl">XL</button>
+  </div>
+</div>
+
+```html
+<button class="gv-btn gv-btn-primary gv-btn-sm">Nút nhỏ</button>
+<button class="gv-btn gv-btn-primary gv-btn-lg">Nút lớn</button>
+```
+
+## Pixel, icon và trạng thái
+
+<div className="docs-demo">
+  <div className="docs-demo-inline">
+    <button type="button" className="gv-btn gv-btn-primary gv-btn-pixel">START</button>
+    <button type="button" className="gv-btn gv-btn-dark gv-btn-icon" aria-label="Settings">⚙</button>
+    <button type="button" className="gv-btn gv-btn-success gv-btn-loading">Đang tải</button>
+    <button type="button" className="gv-btn gv-btn-secondary" disabled>Disabled</button>
+  </div>
+</div>
+
+```html
+<button class="gv-btn gv-btn-primary gv-btn-pixel">START</button>
+<button class="gv-btn gv-btn-dark gv-btn-icon" aria-label="Settings">⚙</button>
+<button class="gv-btn gv-btn-success gv-btn-loading">Đang tải</button>
+```
+
+## Button group và block
+
+<div className="docs-demo">
+  <div className="docs-demo-stack">
+    <div className="gv-btn-group">
+      <button type="button" className="gv-btn gv-btn-secondary">Lùi</button>
+      <button type="button" className="gv-btn gv-btn-primary">Tiếp tục</button>
+      <button type="button" className="gv-btn gv-btn-dark">Xong</button>
+    </div>
+    <button type="button" className="gv-btn gv-btn-primary gv-btn-block">Nút full width</button>
+  </div>
+</div>
+
+```html
+<div class="gv-btn-group">
+  <button class="gv-btn gv-btn-secondary">Lùi</button>
+  <button class="gv-btn gv-btn-primary">Tiếp tục</button>
+</div>
+
+<button class="gv-btn gv-btn-primary gv-btn-block">Nút full width</button>
+```

@@ -1,0 +1,209 @@
+---
+sidebar_position: 1
+title: Typography
+description: Utility class cho display, heading, body text, label, caption và màu chữ.
+---
+
+# Typography
+
+Trang này tập trung vào cách dùng typography utility trong thực tế: chọn scale nào cho đúng ngữ cảnh, khi nào dùng pixel font, khi nào nên chuyển sang body font để tăng độ đọc, và cách ghép text color utility để nội dung rõ ràng hơn.
+
+Nếu bạn muốn xem token đầy đủ của font, size và line-height, xem thêm [Design Tokens](/docs/getting-started/design-tokens). Trang này ưu tiên góc nhìn sử dụng thực tế.
+
+## Tổng quan
+
+<div className="docs-utility-demo">
+  <div className="docs-utility-grid">
+    <div className="docs-utility-item">
+      <div className="gv-heading-4 gv-mb-2">Display</div>
+      <p className="gv-text-sm">Pixel font cho logo, game-like heading, label và UI text ngắn có thể dùng cả tiếng Việt.</p>
+    </div>
+    <div className="docs-utility-item">
+      <div className="gv-heading-4 gv-mb-2">Heading</div>
+      <p className="gv-text-sm">Body font đậm, tối ưu cho tiêu đề tiếng Việt và nội dung dễ đọc.</p>
+    </div>
+    <div className="docs-utility-item">
+      <div className="gv-heading-4 gv-mb-2">Body</div>
+      <p className="gv-text-sm">Scale nội dung chính cho paragraph, mô tả, metadata và helper text.</p>
+    </div>
+    <div className="docs-utility-item">
+      <div className="gv-heading-4 gv-mb-2">Color</div>
+      <p className="gv-text-sm">Text color utility để thể hiện hierarchy, state và accent.</p>
+    </div>
+  </div>
+</div>
+
+## Playground scale
+
+<div className="docs-utility-demo docs-type-playground">
+  <input id="type-mode-display" className="docs-type-toggle" type="radio" name="type-mode" />
+  <input id="type-mode-heading" className="docs-type-toggle" type="radio" name="type-mode" defaultChecked />
+  <input id="type-mode-body" className="docs-type-toggle" type="radio" name="type-mode" />
+  <input id="type-mode-meta" className="docs-type-toggle" type="radio" name="type-mode" />
+
+  <div className="docs-type-toolbar">
+    <span className="docs-demo-label">Typography mode</span>
+    <div className="docs-type-controls">
+      <label htmlFor="type-mode-display" className="docs-type-control">Display</label>
+      <label htmlFor="type-mode-heading" className="docs-type-control">Heading</label>
+      <label htmlFor="type-mode-body" className="docs-type-control">Body</label>
+      <label htmlFor="type-mode-meta" className="docs-type-control">Meta</label>
+    </div>
+  </div>
+
+  <div className="docs-type-canvas">
+    <div className="docs-type-stage">
+      <div className="docs-type-preview docs-type-preview--display">
+        <div className="gv-display-2">QUEST SELECT</div>
+        <p className="docs-demo-note">Pixel font hợp với logo, section title và text ngắn mang cảm giác game retro.</p>
+      </div>
+      <div className="docs-type-preview docs-type-preview--heading">
+        <div className="gv-heading-2">Tiêu đề tiếng Việt nên rõ ràng và chắc nhịp</div>
+        <p className="gv-text-sm">Dùng `.gv-heading-*` khi cần heading tiếng Việt rõ ràng, dày và dễ đọc hơn.</p>
+      </div>
+      <div className="docs-type-preview docs-type-preview--body">
+        <p className="gv-text-lg">Body text lớn cho intro, mô tả quan trọng hoặc phần dẫn vào nội dung chính.</p>
+        <p className="gv-text-md">Body mặc định giữ nhịp đọc thoáng, phù hợp cho paragraph chính trong docs và UI content.</p>
+      </div>
+      <div className="docs-type-preview docs-type-preview--meta">
+        <div className="gv-label">QUEST STATUS</div>
+        <div className="gv-vi-label">Trạng thái nhiệm vụ</div>
+        <div className="gv-caption">Updated 2 mins ago</div>
+      </div>
+    </div>
+  </div>
+
+  <p className="docs-demo-note">
+    Playground này giúp bạn nhìn nhanh nên chọn nhóm chữ nào theo mục đích sử dụng, thay vì chỉ nhớ tên class.
+  </p>
+</div>
+
+## Scale theo nhóm
+
+### Display
+
+<div className="docs-utility-demo">
+  <div className="docs-type-scale-list">
+    <div className="docs-type-scale-item docs-type-scale-item--dark">
+      <code>.gv-display-1</code>
+      <div className="gv-display-1">PIXEL HERO</div>
+      <p className="docs-demo-note">Hero title, logo hoặc title cực nổi bật.</p>
+    </div>
+    <div className="docs-type-scale-item docs-type-scale-item--dark">
+      <code>.gv-display-3</code>
+      <div className="gv-display-3">STAGE CLEAR</div>
+      <p className="docs-demo-note">Section title hoặc tiêu đề phụ dạng pixel.</p>
+    </div>
+    <div className="docs-type-scale-item docs-type-scale-item--dark">
+      <code>.gv-display-5</code>
+      <div className="gv-display-5">HP LOW</div>
+      <p className="docs-demo-note">UI label ngắn, tag hoặc counter pixel-style.</p>
+    </div>
+  </div>
+</div>
+
+### Heading và body
+
+<div className="docs-utility-demo">
+  <div className="docs-type-scale-list">
+    <div className="docs-type-scale-item">
+      <code>.gv-heading-1</code>
+      <div className="gv-heading-1">Tiêu đề lớn cho landing section</div>
+      <p className="docs-demo-note">Mạnh, dày, phù hợp cho hero hoặc title cấp 1.</p>
+    </div>
+    <div className="docs-type-scale-item">
+      <code>.gv-heading-3</code>
+      <div className="gv-heading-3">Heading cấp vừa cho card hoặc block nội dung</div>
+      <p className="docs-demo-note">Cân bằng giữa nhấn mạnh và mật độ chữ.</p>
+    </div>
+    <div className="docs-type-scale-item">
+      <code>.gv-text-md</code>
+      <div className="gv-text-md">Đây là cỡ chữ mặc định phù hợp nhất cho phần lớn paragraph trong docs.</div>
+      <p className="docs-demo-note">Là lựa chọn an toàn khi bạn không muốn text quá to hoặc quá đặc.</p>
+    </div>
+    <div className="docs-type-scale-item">
+      <code>.gv-text-xs</code>
+      <div className="gv-text-xs">Metadata, helper text và ghi chú phụ.</div>
+      <p className="docs-demo-note">Tốt cho thông tin phụ nhưng không nên lạm dụng cho nội dung chính.</p>
+    </div>
+  </div>
+</div>
+
+## Color utilities
+
+<div className="docs-utility-demo">
+  <div className="docs-type-color-grid">
+    <div className="docs-type-color-card">
+      <code>.gv-text-gold</code>
+      <p className="gv-text-gold gv-heading-4">Reward +240 XP</p>
+      <span className="gv-text-sm">Accent, highlight, số liệu quan trọng</span>
+    </div>
+    <div className="docs-type-color-card">
+      <code>.gv-text-brown</code>
+      <p className="gv-text-brown gv-heading-4">Secondary copy</p>
+      <span className="gv-text-sm">Text phụ, mô tả ngắn, helper nhẹ</span>
+    </div>
+    <div className="docs-type-color-card">
+      <code>.gv-text-muted</code>
+      <p className="gv-text-muted gv-heading-4">Last updated</p>
+      <span className="gv-text-sm">Metadata, timestamp, note phụ</span>
+    </div>
+    <div className="docs-type-color-card">
+      <code>.gv-text-danger</code>
+      <p className="gv-text-danger gv-heading-4">Validation error</p>
+      <span className="gv-text-sm">Error state, destructive warning</span>
+    </div>
+    <div className="docs-type-color-card">
+      <code>.gv-text-success</code>
+      <p className="gv-text-success gv-heading-4">Saved successfully</p>
+      <span className="gv-text-sm">Success state, hoàn tất, hợp lệ</span>
+    </div>
+    <div className="docs-type-color-card">
+      <code>.gv-text-info</code>
+      <p className="gv-text-info gv-heading-4">Info message</p>
+      <span className="gv-text-sm">Thông tin phụ, contextual guidance</span>
+    </div>
+    <div className="docs-type-color-card">
+      <code>.gv-text-purple</code>
+      <p className="gv-text-purple gv-heading-4">Special rarity</p>
+      <span className="gv-text-sm">Accent đặc biệt, trạng thái hiếm hoặc premium</span>
+    </div>
+    <div className="docs-type-color-card docs-type-color-card--dark">
+      <code>.gv-text-cream</code>
+      <p className="gv-text-cream gv-heading-4">Text on dark surface</p>
+      <span className="gv-text-sm">Dùng trên nền tối, dark card hoặc modal backdrop layer</span>
+    </div>
+  </div>
+</div>
+
+## Mẫu ghép thực tế
+
+<div className="docs-utility-demo">
+  <div className="docs-type-composition">
+    <div className="gv-label">RAID READY</div>
+    <h2 className="gv-heading-2 gv-mb-2">Chuẩn bị đội hình trước khi vào trận</h2>
+    <p className="gv-text-md gv-mb-3">
+      Dùng heading rõ ràng cho nội dung tiếng Việt, sau đó xuống body text vừa phải để giữ nhịp đọc
+      ổn định trong phần mô tả.
+    </p>
+    <div className="gv-flex gv-gap-3 gv-flex-wrap">
+      <span className="gv-text-success gv-text-sm">Đủ thành viên</span>
+      <span className="gv-text-gold gv-text-sm">Boost x2 kinh nghiệm</span>
+      <span className="gv-caption">Updated 5 phút trước</span>
+    </div>
+  </div>
+</div>
+
+```html
+<div class="gv-label">RAID READY</div>
+<h2 class="gv-heading-2">Chuẩn bị đội hình trước khi vào trận</h2>
+<p class="gv-text-md">...</p>
+<span class="gv-text-success gv-text-sm">Đủ thành viên</span>
+```
+
+## Gợi ý sử dụng
+
+- Dùng `display` cho text ngắn và thiên về trang trí; với câu dài, body font vẫn dễ đọc hơn.
+- Với heading tiếng Việt, ưu tiên `.gv-heading-*` hoặc ghép thêm `.gv-vi-tight`.
+- `gv-text-md` là default tốt nhất cho docs paragraph; chỉ tăng lên `lg/xl` khi cần nhấn mạnh.
+- `gv-caption`, `gv-text-xs`, `gv-text-muted` hợp cho metadata, nhưng không nên dùng làm nội dung chính.

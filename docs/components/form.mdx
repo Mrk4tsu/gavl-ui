@@ -1,0 +1,72 @@
+---
+sidebar_position: 5
+title: Form
+description: Input, select, textarea và nhóm form cơ bản của GAVL UI.
+---
+
+# Form
+
+GAVL UI cung cấp bộ class cho input text, select, textarea, helper text, error state và input group.
+
+## Input cơ bản
+
+<div className="docs-demo">
+  <div className="docs-form-grid docs-form-grid--two">
+    <div className="gv-form-group">
+      <label className="gv-form-label" htmlFor="demo-email">Email</label>
+      <input id="demo-email" className="gv-input" type="email" placeholder="you@example.com" />
+      <div className="gv-form-helper">Helper text mặc định.</div>
+    </div>
+    <div className="gv-form-group">
+      <label className="gv-form-label" htmlFor="demo-name">Tên hiển thị</label>
+      <input id="demo-name" className="gv-input gv-input-success" type="text" defaultValue="GAVL Player" />
+      <div className="gv-form-helper">Input với state thành công.</div>
+    </div>
+  </div>
+</div>
+
+```html
+<input class="gv-input" type="text" placeholder="Nhập nội dung" />
+<input class="gv-input gv-input-success" type="text" value="Hợp lệ" />
+```
+
+## Select, textarea và error state
+
+<div className="docs-demo">
+  <div className="docs-form-grid">
+    <select className="gv-select" defaultValue="mage">
+      <option value="warrior">Warrior</option>
+      <option value="mage">Mage</option>
+      <option value="archer">Archer</option>
+    </select>
+    <textarea className="gv-textarea gv-input-error" rows="4" defaultValue="Nội dung đang có lỗi validate." />
+    <div className="gv-form-error">Trường này cần ít nhất 20 ký tự.</div>
+  </div>
+</div>
+
+## Input sizes và input group
+
+<div className="docs-demo">
+  <div className="docs-form-grid">
+    <input className="gv-input-sm" type="text" placeholder="Input nhỏ" />
+    <input className="gv-input" type="text" placeholder="Input mặc định" />
+    <input className="gv-input-lg" type="text" placeholder="Input lớn" />
+
+    <div className="gv-input-group">
+      <span className="gv-input-addon gv-input-addon-left">@</span>
+      <input className="gv-input" type="text" placeholder="username" />
+    </div>
+  </div>
+</div>
+
+```html
+<div class="gv-input-group">
+  <span class="gv-input-addon gv-input-addon-left">@</span>
+  <input class="gv-input" type="text" placeholder="username" />
+</div>
+```
+
+## Ghi chú
+
+- `.gv-form-label-vi` phù hợp hơn khi label chứa tiếng Việt dài.
+- Modal, submit, validation state vẫn cần JavaScript của ứng dụng để điều khiển hành vi.

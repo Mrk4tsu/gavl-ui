@@ -1,0 +1,147 @@
+---
+sidebar_position: 6
+title: Modal
+description: Cấu trúc modal và backdrop của GAVL UI.
+---
+
+# Modal
+
+Modal của GAVL UI là cấu trúc CSS thuần. Ứng dụng của bạn sẽ chịu trách nhiệm thêm hoặc gỡ class `.active` trên `.gv-modal-backdrop`.
+
+<div className="docs-demo docs-modal-playground">
+  <div className="docs-demo-inline">
+    <span className="docs-demo-label">CSS-only demo</span>
+    <span className="docs-demo-label">Click để mở / đóng</span>
+  </div>
+
+  <input id="modal-demo-toggle" className="docs-modal-toggle" type="checkbox" />
+
+  <div className="docs-modal-toolbar">
+    <label htmlFor="modal-demo-toggle" className="gv-btn gv-btn-primary">
+      Mở modal demo
+    </label>
+    <span className="docs-demo-note">Backdrop, shadow và panel được render ngay trong vùng preview.</span>
+  </div>
+
+  <div className="docs-modal-stage">
+    <div className="docs-modal-scene">
+      <div className="docs-modal-appbar">
+        <span className="gv-label">QUEST BOARD</span>
+        <button type="button" className="gv-btn gv-btn-secondary gv-btn-sm">Tạo nhiệm vụ</button>
+      </div>
+      <div className="docs-modal-content">
+        <div className="gv-card gv-card-hover">
+          <div className="gv-card-body">
+            <div className="gv-card-title-vi">Nhiệm vụ hằng ngày</div>
+            <p className="gv-card-desc">Bấm nút để mô phỏng trạng thái modal đang mở phía trên giao diện hiện tại.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div className="docs-modal-overlay">
+      <div className="gv-modal-backdrop active">
+        <div className="gv-modal">
+          <div className="gv-modal-header">
+            <div>
+              <div className="gv-modal-title">Xác nhận nhiệm vụ</div>
+              <div className="gv-caption">Trạng thái demo trong tài liệu</div>
+            </div>
+            <label htmlFor="modal-demo-toggle" className="gv-modal-close" aria-label="Close">×</label>
+          </div>
+          <div className="gv-modal-body">
+            <p className="gv-text-md gv-mb-3">Bạn có chắc muốn bắt đầu quest này không?</p>
+            <div className="gv-alert gv-alert-warning">
+              <span className="gv-alert-icon">⚠</span>
+              <div>
+                <div className="gv-alert-title">Lưu ý</div>
+                Sau khi xác nhận, progress hiện tại sẽ được reset theo nhiệm vụ mới.
+              </div>
+            </div>
+          </div>
+          <div className="gv-modal-footer">
+            <label htmlFor="modal-demo-toggle" className="gv-btn gv-btn-ghost">Hủy</label>
+            <button type="button" className="gv-btn gv-btn-primary">Xác nhận</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+## Cấu trúc cơ bản
+
+```html
+<div class="gv-modal-backdrop active">
+  <div class="gv-modal">
+    <div class="gv-modal-header">
+      <div class="gv-modal-title">Xác nhận nhiệm vụ</div>
+      <button class="gv-modal-close" aria-label="Close">×</button>
+    </div>
+    <div class="gv-modal-body">...</div>
+    <div class="gv-modal-footer">
+      <button class="gv-btn gv-btn-ghost">Hủy</button>
+      <button class="gv-btn gv-btn-primary">Xác nhận</button>
+    </div>
+  </div>
+</div>
+```
+
+## Anatomy
+
+| Phần tử | Class | Vai trò |
+|---|---|---|
+| Backdrop | `.gv-modal-backdrop` | Lớp phủ toàn màn hình, khóa focus thị giác vào modal |
+| Container | `.gv-modal` | Hộp modal chính |
+| Header | `.gv-modal-header` | Chứa title và close action |
+| Title | `.gv-modal-title` hoặc `.gv-modal-title-pixel` | Tiêu đề modal |
+| Body | `.gv-modal-body` | Nội dung chính |
+| Footer | `.gv-modal-footer` | Hành động cuối modal |
+
+## Kích thước và style title
+
+<div className="docs-demo docs-modal-preview-grid">
+  <div className="docs-modal-preview docs-modal-preview--sm">
+    <div className="gv-modal-backdrop active">
+      <div className="gv-modal gv-modal-sm">
+        <div className="gv-modal-header">
+          <div className="gv-modal-title">Modal nhỏ</div>
+          <button type="button" className="gv-modal-close" aria-label="Close">×</button>
+        </div>
+        <div className="gv-modal-body">
+          <p className="gv-text-sm">Phù hợp cho confirm dialog hoặc cảnh báo ngắn.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div className="docs-modal-preview docs-modal-preview--lg">
+    <div className="gv-modal-backdrop active">
+      <div className="gv-modal gv-modal-lg">
+        <div className="gv-modal-header">
+          <div className="gv-modal-title-pixel">SAVE GAME</div>
+          <button type="button" className="gv-modal-close" aria-label="Close">×</button>
+        </div>
+        <div className="gv-modal-body">
+          <p className="gv-text-sm">Modal lớn phù hợp cho form nhiều trường, setting panel hoặc content dài.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+```html
+<div class="gv-modal gv-modal-sm">...</div>
+<div class="gv-modal">...</div>
+<div class="gv-modal gv-modal-lg">...</div>
+```
+
+```html
+<div class="gv-modal-title">Thiết lập tài khoản</div>
+<div class="gv-modal-title-pixel">SAVE GAME</div>
+```
+
+## Ghi chú triển khai
+
+- Modal chỉ là CSS shell; trạng thái mở/đóng cần JavaScript của ứng dụng quản lý.
+- Khi dùng thực tế, nên khóa scroll nền và trap focus khi modal mở.
+- `.gv-modal-close` là nút giao diện, nhưng hành vi đóng modal vẫn cần JS của bạn xử lý.

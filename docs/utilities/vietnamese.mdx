@@ -1,0 +1,41 @@
+---
+sidebar_position: 3
+title: Vietnamese
+description: Cách dùng gv-vi, gv-vi-tight, gv-heading-* và label cho nội dung tiếng Việt.
+---
+
+# Vietnamese
+
+GAVL UI được tối ưu riêng cho nội dung tiếng Việt bằng font body và line-height rộng hơn. Đây là điểm quan trọng nếu bạn muốn giữ phong cách pixel nhưng vẫn đọc tốt trên nội dung nhiều dấu.
+
+## Class nên dùng
+
+| Class | Khi dùng |
+|---|---|
+| `.gv-vi` | Paragraph, content block, mô tả dài |
+| `.gv-vi-tight` | Heading tiếng Việt hoặc text ngắn cần gọn |
+| `.gv-heading-1` → `.gv-heading-4` | Tiêu đề tiếng Việt |
+| `.gv-form-label-vi` | Label form tiếng Việt |
+| `.gv-vi-label` | Label ngắn, uppercase mềm |
+
+## So sánh nhanh
+
+<div className="docs-utility-demo">
+  <div className="docs-utility-grid">
+    <div className="docs-vi-sample">
+      <div className="gv-display-5">PIXEL ONLY</div>
+      <p className="docs-demo-note">Phù hợp cho text pixel-style ngắn; với câu dài vẫn nên ưu tiên body font để dễ đọc hơn.</p>
+    </div>
+    <div className="docs-vi-sample">
+      <div className="gv-heading-3 gv-vi-tight">Tiêu đề tiếng Việt nên dùng heading body font</div>
+      <p className="gv-text-md gv-vi">Nội dung tiếng Việt dài nên đi kèm `.gv-vi` để khoảng dòng thoáng và tránh cảm giác bí chữ.</p>
+    </div>
+  </div>
+</div>
+
+```html
+<h3 class="gv-heading-3 gv-vi-tight">Cấu hình tiếng Việt</h3>
+<p class="gv-text-md gv-vi">
+  Nội dung tiếng Việt dài nên ưu tiên body font để khoảng dòng và độ đọc ổn định hơn.
+</p>
+```

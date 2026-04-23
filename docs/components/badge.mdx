@@ -1,0 +1,47 @@
+---
+sidebar_position: 3
+title: Badge
+description: Nhãn trạng thái nhỏ gọn để hiển thị role, trạng thái và level ưu tiên.
+---
+
+# Badge
+
+Badge phù hợp cho status, nhãn phân loại hoặc token ngắn. Base class là `.gv-badge`.
+
+## Variants
+
+<div className="docs-demo">
+  <div className="docs-demo-inline">
+    <span className="gv-badge gv-badge-primary">Primary</span>
+    <span className="gv-badge gv-badge-dark">Dark</span>
+    <span className="gv-badge gv-badge-danger">Danger</span>
+    <span className="gv-badge gv-badge-success">Success</span>
+    <span className="gv-badge gv-badge-info">Info</span>
+    <span className="gv-badge gv-badge-purple">Purple</span>
+    <span className="gv-badge gv-badge-outline">Outline</span>
+  </div>
+</div>
+
+```html
+<span class="gv-badge gv-badge-success">Hoàn thành</span>
+<span class="gv-badge gv-badge-danger">Khẩn cấp</span>
+```
+
+## Pixel badge
+
+<div className="docs-demo">
+  <div className="docs-demo-inline">
+    <span className="gv-badge gv-badge-primary gv-badge-pixel">NEW</span>
+    <span className="gv-badge gv-badge-dark gv-badge-pixel">BOSS</span>
+    <span className="gv-badge gv-badge-outline gv-badge-pixel">SIDE</span>
+  </div>
+</div>
+
+```html
+<span class="gv-badge gv-badge-primary gv-badge-pixel">NEW</span>
+```
+
+## Khi nào dùng badge
+
+- Dùng khi nội dung rất ngắn: trạng thái, loại item, cấp độ.
+- Nếu cần có hành vi hover/click như tag lọc, cân nhắc `.gv-tag` thay vì `.gv-badge`.

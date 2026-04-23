@@ -1,0 +1,233 @@
+---
+sidebar_position: 2
+title: Card
+description: Khối nội dung dạng panel với header, body, footer, media và các biến thể màu.
+---
+
+# Card
+
+`Card` là panel nền tảng để gom nội dung thành từng khối rõ ràng. Trong GAVL UI, card không chỉ là một hộp chứa text, mà còn là pattern dùng cho quest item, stat panel, dashboard block, reward card hoặc content section có hành động đi kèm.
+
+Base class là `.gv-card`. Từ đó bạn ghép thêm:
+- `.gv-card-dark`, `.gv-card-gold` cho biến thể màu
+- `.gv-card-hover` cho hiệu ứng nhấc card khi hover
+- `.gv-card-header`, `.gv-card-body`, `.gv-card-footer`, `.gv-card-image` cho cấu trúc nội dung
+
+## Tổng quan
+
+<div className="docs-demo">
+  <div className="docs-demo-grid">
+    <div className="docs-demo-surface">
+      <div className="gv-card-title-vi">Default panel</div>
+      <p className="gv-card-desc">Card sáng cho docs, list item và khối nội dung thường.</p>
+    </div>
+    <div className="docs-demo-surface docs-demo-dark">
+      <div className="gv-card-title-vi">Dark panel</div>
+      <p className="gv-card-desc">Card tối cho hero section, stat panel hoặc lớp nhấn mạnh.</p>
+    </div>
+    <div className="docs-demo-surface">
+      <div className="gv-card-title-vi">Media / action</div>
+      <p className="gv-card-desc">Card có thể chứa ảnh, hành động, badge và metadata mà vẫn giữ khung rõ ràng.</p>
+    </div>
+  </div>
+</div>
+
+## Playground tương tác
+
+<div className="docs-demo docs-card-playground">
+  <input id="card-mode-default" className="docs-card-toggle" type="radio" name="card-mode" defaultChecked />
+  <input id="card-mode-dark" className="docs-card-toggle" type="radio" name="card-mode" />
+  <input id="card-mode-gold" className="docs-card-toggle" type="radio" name="card-mode" />
+  <input id="card-mode-media" className="docs-card-toggle" type="radio" name="card-mode" />
+
+  <div className="docs-card-toolbar">
+    <span className="docs-demo-label">Card variants</span>
+    <div className="docs-card-controls">
+      <label htmlFor="card-mode-default" className="docs-card-control">Default</label>
+      <label htmlFor="card-mode-dark" className="docs-card-control">Dark</label>
+      <label htmlFor="card-mode-gold" className="docs-card-control">Gold</label>
+      <label htmlFor="card-mode-media" className="docs-card-control">Media / Hover</label>
+    </div>
+  </div>
+
+  <div className="docs-card-canvas">
+    <div className="docs-card-preview docs-card-preview--default">
+      <div className="gv-card">
+        <div className="gv-card-header">
+          <div className="gv-card-title-vi">Nhiệm vụ hôm nay</div>
+          <span className="gv-badge gv-badge-primary">Mới</span>
+        </div>
+        <div className="gv-card-body">
+          <div className="gv-text-sm gv-text-brown">Main quest</div>
+          <p className="gv-card-desc">Card mặc định phù hợp cho content, task item, docs section và panel thông tin chung.</p>
+        </div>
+        <div className="gv-card-footer">
+          <button type="button" className="gv-btn gv-btn-primary gv-btn-sm">Xem chi tiết</button>
+        </div>
+      </div>
+    </div>
+
+    <div className="docs-card-preview docs-card-preview--dark">
+      <div className="gv-card gv-card-dark">
+        <div className="gv-card-body">
+          <span className="gv-badge gv-badge-danger">Nguy hiểm</span>
+          <div className="gv-mb-2"></div>
+          <div className="gv-card-title-vi">Raid Boss</div>
+          <div className="gv-card-title">NIGHT DRAGON</div>
+          <p className="gv-card-desc">Card tối tăng cảm giác chiều sâu, hợp với hero block, combat panel hoặc content cần contrast mạnh.</p>
+        </div>
+        <div className="gv-card-footer">
+          <button type="button" className="gv-btn gv-btn-danger gv-btn-sm">Xem boss</button>
+        </div>
+      </div>
+    </div>
+
+    <div className="docs-card-preview docs-card-preview--gold">
+      <div className="gv-card gv-card-gold">
+        <div className="gv-card-body">
+          <div className="gv-card-title">REWARD DROP</div>
+          <div className="gv-card-title-vi">Rương huyền thoại</div>
+          <p className="gv-card-desc">Biến thể gold dùng cho phần thưởng, featured item, premium state hoặc block cần thu hút ánh nhìn.</p>
+        </div>
+      </div>
+    </div>
+
+    <div className="docs-card-preview docs-card-preview--media">
+      <div className="gv-card gv-card-hover">
+        <div className="docs-card-media">16:9 Media</div>
+        <div className="gv-card-body">
+          <div className="gv-card-title">QUEST BOARD</div>
+          <div className="gv-card-title-vi">Card có hiệu ứng hover</div>
+          <p className="gv-card-desc">Dùng `.gv-card-hover` để panel nhấc lên khi rê chuột, phù hợp cho card có tính khám phá hoặc click-through.</p>
+        </div>
+        <div className="gv-card-footer">
+          <button type="button" className="gv-btn gv-btn-primary gv-btn-sm">Mở nhiệm vụ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p className="docs-demo-note">
+    Bấm các nút phía trên để chuyển nhanh giữa các mẫu card thường gặp trong UI. Đây là cách tốt hơn để so sánh variant so với chỉ nhìn từng block tách rời.
+  </p>
+</div>
+
+## Cấu trúc cơ bản
+
+```html
+<div class="gv-card">
+  <div class="gv-card-header">
+    <div class="gv-card-title-vi">Nhiệm vụ hôm nay</div>
+    <span class="gv-badge gv-badge-primary">Mới</span>
+  </div>
+
+  <div class="gv-card-body">
+    <p class="gv-card-desc">Nội dung chính của card.</p>
+  </div>
+
+  <div class="gv-card-footer">
+    <button class="gv-btn gv-btn-primary gv-btn-sm">Xem chi tiết</button>
+  </div>
+</div>
+```
+
+## Anatomy
+
+| Phần tử | Class | Vai trò |
+|---|---|---|
+| Container | `.gv-card` | Khối card chính |
+| Variant | `.gv-card-dark`, `.gv-card-gold` | Đổi theme màu của toàn card |
+| Hover | `.gv-card-hover` | Thêm hiệu ứng nổi lên khi rê chuột |
+| Header | `.gv-card-header` | Title, badge, action phụ |
+| Body | `.gv-card-body` | Nội dung chính |
+| Footer | `.gv-card-footer` | CTA hoặc metadata cuối |
+| Media | `.gv-card-image` | Ảnh đầu card |
+| Pixel title | `.gv-card-title` | Tiêu đề kiểu pixel |
+| Vietnamese title | `.gv-card-title-vi` | Tiêu đề body font cho tiếng Việt |
+| Description | `.gv-card-desc` | Mô tả ngắn trong card |
+
+## Composition patterns
+
+### 1. Content card
+
+<div className="docs-demo">
+  <div className="gv-card">
+    <div className="gv-card-body">
+      <div className="gv-card-title-vi">Tóm tắt tính năng</div>
+      <p className="gv-card-desc">Dạng card tối giản chỉ có body, phù hợp cho docs block, note hoặc summary card.</p>
+    </div>
+  </div>
+</div>
+
+### 2. Stat / dashboard card
+
+<div className="docs-demo">
+  <div className="docs-demo-grid">
+    <div className="gv-card">
+      <div className="gv-card-body">
+        <div className="gv-label">Total users</div>
+        <div className="gv-heading-2 gv-text-gold">12,480</div>
+        <p className="gv-card-desc">Số liệu chính với hierarchy rõ: label, number, context.</p>
+      </div>
+    </div>
+    <div className="gv-card gv-card-dark">
+      <div className="gv-card-body">
+        <div className="gv-label">Victory rate</div>
+        <div className="gv-heading-2 gv-text-cream">84%</div>
+        <p className="gv-card-desc">Dark card hợp với dashboard hoặc section nền tối.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+### 3. Media card
+
+<div className="docs-demo">
+  <div className="gv-card gv-card-hover">
+    <div className="docs-card-media">Preview image</div>
+    <div className="gv-card-body">
+      <div className="gv-card-title-vi">Card có media</div>
+      <p className="gv-card-desc">Phù hợp cho gallery item, blog preview, showcase component hoặc feature tile.</p>
+    </div>
+  </div>
+</div>
+
+```html
+<div class="gv-card gv-card-hover">
+  <img class="gv-card-image" src="..." alt="" />
+  <div class="gv-card-body">...</div>
+</div>
+```
+
+### 4. Action card
+
+<div className="docs-demo">
+  <div className="gv-card">
+    <div className="gv-card-header">
+      <div className="gv-card-title-vi">Nâng cấp trang bị</div>
+      <span className="gv-badge gv-badge-success">Sẵn sàng</span>
+    </div>
+    <div className="gv-card-body">
+      <p className="gv-card-desc">Dùng footer để tách riêng hành động chính thay vì trộn lẫn với nội dung.</p>
+    </div>
+    <div className="gv-card-footer">
+      <div className="gv-flex-between">
+        <span className="gv-caption">Cập nhật 5 phút trước</span>
+        <button type="button" className="gv-btn gv-btn-primary gv-btn-sm">Nâng cấp</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+## Khi nào dùng card variant nào
+
+- Dùng `default` cho phần lớn use-case: docs, list item, settings block, basic content.
+- Dùng `dark` khi card nằm trên nền sáng nhưng cần cảm giác nặng, premium hoặc chiều sâu hơn.
+- Dùng `gold` cho reward, featured item, highlight state hoặc announcement nổi bật.
+- Dùng `hover` khi card có thể click hoặc đóng vai trò như một entry point điều hướng.
+
+## Ghi chú triển khai
+
+- `gv-card-dark` và `gv-card-gold` chỉ đổi theme màu; cấu trúc header/body/footer vẫn giữ nguyên.
+- `gv-card-title` phù hợp cho text pixel-style ngắn. Với tiêu đề tiếng Việt dài, nên ưu tiên `.gv-card-title-vi`.
+- Nếu card chứa CTA, nên đưa CTA xuống `gv-card-footer` để visual hierarchy rõ hơn.

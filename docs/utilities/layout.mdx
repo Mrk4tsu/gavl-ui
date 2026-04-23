@@ -1,0 +1,257 @@
+---
+sidebar_position: 2
+title: Layout
+description: Utility class cho container, flex, grid, gap, margin, padding và text alignment.
+---
+
+# Layout
+
+Utility layout của GAVL UI được thiết kế để bạn dựng khung nhanh mà vẫn giữ nhịp pixel UI nhất quán. Thay vì viết CSS mới cho từng block nhỏ, bạn có thể ghép các class layout có sẵn để tạo container, row, grid, spacing và alignment chỉ trong vài dòng HTML.
+
+## Tổng quan
+
+<div className="docs-utility-demo">
+  <div className="docs-utility-grid">
+    <div className="docs-utility-item">
+      <div className="gv-heading-4 gv-mb-2">Container</div>
+      <p className="gv-text-sm">Giới hạn chiều rộng nội dung với `.gv-container`, `.gv-container-sm`, `.gv-container-xs`.</p>
+    </div>
+    <div className="docs-utility-item">
+      <div className="gv-heading-4 gv-mb-2">Flex</div>
+      <p className="gv-text-sm">Dàn hàng, canh giữa, tách hai đầu hoặc xếp cột với các utility flex ngắn gọn.</p>
+    </div>
+    <div className="docs-utility-item">
+      <div className="gv-heading-4 gv-mb-2">Grid</div>
+      <p className="gv-text-sm">Dùng `.gv-grid-2`, `.gv-grid-3`, `.gv-grid-4` để tạo layout responsive theo cột.</p>
+    </div>
+    <div className="docs-utility-item">
+      <div className="gv-heading-4 gv-mb-2">Spacing</div>
+      <p className="gv-text-sm">Áp margin, padding và gap theo scale token đồng nhất trên toàn bộ hệ thống.</p>
+    </div>
+  </div>
+</div>
+
+## Playground container
+
+<div className="docs-utility-demo docs-layout-playground">
+  <input id="layout-container-default" className="docs-layout-toggle" type="radio" name="layout-container" defaultChecked />
+  <input id="layout-container-sm" className="docs-layout-toggle" type="radio" name="layout-container" />
+  <input id="layout-container-xs" className="docs-layout-toggle" type="radio" name="layout-container" />
+
+  <div className="docs-layout-toolbar">
+    <span className="docs-demo-label">Container width</span>
+    <div className="docs-layout-controls">
+      <label htmlFor="layout-container-default" className="docs-layout-control">`.gv-container`</label>
+      <label htmlFor="layout-container-sm" className="docs-layout-control">`.gv-container-sm`</label>
+      <label htmlFor="layout-container-xs" className="docs-layout-control">`.gv-container-xs`</label>
+    </div>
+  </div>
+
+  <div className="docs-layout-canvas">
+    <div className="docs-layout-viewport">
+      <div className="docs-layout-container-demo">
+        <div className="docs-layout-box">Header area</div>
+        <div className="gv-grid-3 gv-gap-3">
+          <div className="docs-layout-box docs-layout-box--muted">Sidebar</div>
+          <div className="docs-layout-box">Main content</div>
+          <div className="docs-layout-box docs-layout-box--dark">Meta panel</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p className="docs-demo-note">
+    Dùng container khi bạn muốn giới hạn khối nội dung vào một độ rộng nhất định và canh giữa layout.
+    `sm` và `xs` phù hợp hơn cho docs text-heavy, form hoặc modal-like content.
+  </p>
+</div>
+
+```html
+<section class="gv-container">
+  ...
+</section>
+
+<article class="gv-container-sm">
+  ...
+</article>
+```
+
+## Playground flex
+
+<div className="docs-utility-demo docs-layout-playground">
+  <input id="layout-flex-base" className="docs-layout-toggle" type="radio" name="layout-flex" defaultChecked />
+  <input id="layout-flex-center" className="docs-layout-toggle" type="radio" name="layout-flex" />
+  <input id="layout-flex-between" className="docs-layout-toggle" type="radio" name="layout-flex" />
+  <input id="layout-flex-col" className="docs-layout-toggle" type="radio" name="layout-flex" />
+
+  <div className="docs-layout-toolbar">
+    <span className="docs-demo-label">Flex patterns</span>
+    <div className="docs-layout-controls">
+      <label htmlFor="layout-flex-base" className="docs-layout-control">`.gv-flex`</label>
+      <label htmlFor="layout-flex-center" className="docs-layout-control">`.gv-flex-center`</label>
+      <label htmlFor="layout-flex-between" className="docs-layout-control">`.gv-flex-between`</label>
+      <label htmlFor="layout-flex-col" className="docs-layout-control">`.gv-flex-col`</label>
+    </div>
+  </div>
+
+  <div className="docs-layout-canvas">
+    <div className="docs-layout-flex-demo gv-gap-3">
+      <div className="docs-layout-chip">Avatar</div>
+      <div className="docs-layout-chip docs-layout-chip--wide">Player info</div>
+      <div className="docs-layout-chip">Action</div>
+    </div>
+  </div>
+
+  <div className="docs-utility-grid">
+    <div className="docs-utility-item">
+      <div className="gv-heading-4 gv-mb-2">`.gv-flex`</div>
+      <p className="gv-text-sm">Xếp item theo hàng ngang. Ghép thêm `.gv-gap-*` để có khoảng cách.</p>
+    </div>
+    <div className="docs-utility-item">
+      <div className="gv-heading-4 gv-mb-2">`.gv-flex-center`</div>
+      <p className="gv-text-sm">Canh giữa theo cả trục ngang lẫn dọc cho empty state, icon block hoặc modal action.</p>
+    </div>
+    <div className="docs-utility-item">
+      <div className="gv-heading-4 gv-mb-2">`.gv-flex-between`</div>
+      <p className="gv-text-sm">Tách 2 cụm nội dung ra hai mép. Hợp với header card, toolbar, list row.</p>
+    </div>
+    <div className="docs-utility-item">
+      <div className="gv-heading-4 gv-mb-2">`.gv-flex-col`</div>
+      <p className="gv-text-sm">Xếp dọc các phần tử cùng một nhóm nội dung.</p>
+    </div>
+  </div>
+</div>
+
+```html
+<div class="gv-flex-between gv-gap-3">
+  <div>Title</div>
+  <div>Actions</div>
+</div>
+```
+
+## Playground grid
+
+<div className="docs-utility-demo docs-layout-playground">
+  <input id="layout-grid-2" className="docs-layout-toggle" type="radio" name="layout-grid" />
+  <input id="layout-grid-3" className="docs-layout-toggle" type="radio" name="layout-grid" defaultChecked />
+  <input id="layout-grid-4" className="docs-layout-toggle" type="radio" name="layout-grid" />
+  <input id="layout-gap-2" className="docs-layout-toggle" type="radio" name="layout-gap" />
+  <input id="layout-gap-4" className="docs-layout-toggle" type="radio" name="layout-gap" defaultChecked />
+  <input id="layout-gap-5" className="docs-layout-toggle" type="radio" name="layout-gap" />
+
+  <div className="docs-layout-toolbar">
+    <span className="docs-demo-label">Grid columns</span>
+    <div className="docs-layout-controls">
+      <label htmlFor="layout-grid-2" className="docs-layout-control">2 cols</label>
+      <label htmlFor="layout-grid-3" className="docs-layout-control">3 cols</label>
+      <label htmlFor="layout-grid-4" className="docs-layout-control">4 cols</label>
+    </div>
+  </div>
+
+  <div className="docs-layout-toolbar">
+    <span className="docs-demo-label">Gap</span>
+    <div className="docs-layout-controls">
+      <label htmlFor="layout-gap-2" className="docs-layout-control">`.gv-gap-2`</label>
+      <label htmlFor="layout-gap-4" className="docs-layout-control">`.gv-gap-4`</label>
+      <label htmlFor="layout-gap-5" className="docs-layout-control">`.gv-gap-5`</label>
+    </div>
+  </div>
+
+  <div className="docs-layout-canvas">
+    <div className="docs-layout-grid-demo">
+      <div className="docs-layout-box">1</div>
+      <div className="docs-layout-box docs-layout-box--muted">2</div>
+      <div className="docs-layout-box docs-layout-box--dark">3</div>
+      <div className="docs-layout-box">4</div>
+    </div>
+  </div>
+
+  <p className="docs-demo-note">
+    Các grid utility tự co lại theo breakpoint có sẵn trong thư viện: trên tablet, `gv-grid-3` và
+    `gv-grid-4` giảm còn 2 cột; trên mobile, tất cả về 1 cột.
+  </p>
+</div>
+
+| Class | Ý nghĩa |
+|---|---|
+| `.gv-grid-2` | 2 cột responsive |
+| `.gv-grid-3` | 3 cột responsive |
+| `.gv-grid-4` | 4 cột responsive |
+| `.gv-gap-1` → `.gv-gap-5` | Khoảng cách giữa item theo scale spacing |
+
+```html
+<div class="gv-grid-3 gv-gap-4">
+  <div>...</div>
+  <div>...</div>
+  <div>...</div>
+</div>
+```
+
+## Spacing utilities
+
+<div className="docs-utility-demo">
+  <div className="docs-layout-spacing-grid">
+    <div className="docs-utility-item">
+      <div className="gv-heading-4 gv-mb-2">Padding</div>
+      <div className="docs-layout-spacing-frame">
+        <div className="docs-layout-padding-demo gv-p-4">
+          <div className="docs-layout-box docs-layout-box--muted">`.gv-p-4`</div>
+        </div>
+      </div>
+      <p className="gv-text-sm gv-mt-2">Áp padding nhanh cho card wrapper, note block, promo panel.</p>
+    </div>
+    <div className="docs-utility-item">
+      <div className="gv-heading-4 gv-mb-2">Margin</div>
+      <div className="docs-layout-spacing-frame">
+        <div className="docs-layout-margin-demo">
+          <div className="docs-layout-box">Block A</div>
+          <div className="docs-layout-margin-gap gv-mb-4"></div>
+          <div className="docs-layout-box docs-layout-box--dark">Block B</div>
+        </div>
+      </div>
+      <p className="gv-text-sm gv-mt-2">Dùng `.gv-mt-*` và `.gv-mb-*` để điều chỉnh nhịp dọc nhanh chóng.</p>
+    </div>
+    <div className="docs-utility-item">
+      <div className="gv-heading-4 gv-mb-2">Gap</div>
+      <div className="docs-layout-spacing-frame">
+        <div className="gv-flex gv-gap-3">
+          <div className="docs-layout-box docs-layout-box--muted">HP</div>
+          <div className="docs-layout-box">MP</div>
+          <div className="docs-layout-box docs-layout-box--dark">ATK</div>
+        </div>
+      </div>
+      <p className="gv-text-sm gv-mt-2">Gap phù hợp nhất cho flex và grid, thay vì thêm margin thủ công từng item.</p>
+    </div>
+  </div>
+</div>
+
+```html
+<section class="gv-mt-4 gv-mb-5 gv-p-4">
+  ...
+</section>
+```
+
+## Text alignment
+
+<div className="docs-utility-demo">
+  <div className="docs-utility-grid">
+    <div className="docs-utility-item gv-text-left">
+      <div className="gv-heading-4 gv-mb-2">`.gv-text-left`</div>
+      <p className="gv-text-sm">Mặc định cho paragraph, docs body và phần lớn UI text.</p>
+    </div>
+    <div className="docs-utility-item gv-text-center">
+      <div className="gv-heading-4 gv-mb-2">`.gv-text-center`</div>
+      <p className="gv-text-sm">Phù hợp cho empty state, callout, hero copy hoặc stat block.</p>
+    </div>
+    <div className="docs-utility-item gv-text-right">
+      <div className="gv-heading-4 gv-mb-2">`.gv-text-right`</div>
+      <p className="gv-text-sm">Dùng cho số liệu, meta info hoặc action nằm cuối một block.</p>
+    </div>
+  </div>
+</div>
+
+## Gợi ý sử dụng
+
+- Dùng utility layout để dựng khung nhanh, sau đó mới thêm component class như `card`, `form`, `badge`.
+- Chọn `gap` cho khoảng cách giữa item trong cùng một group; chọn `margin/padding` cho khoảng cách giữa các block hoặc khung nội dung.
+- Với nội dung dài, ưu tiên `container-sm` hoặc `container-xs` để giảm độ dài dòng và dễ đọc hơn.
