@@ -6,9 +6,13 @@ description: Nhãn trạng thái nhỏ gọn để hiển thị role, trạng th
 
 # Badge
 
-Badge phù hợp cho status, nhãn phân loại hoặc token ngắn. Base class là `.gv-badge`.
+`Badge` là nhãn nhỏ gọn dùng để truyền đạt ngữ nghĩa ngắn — trạng thái, phân loại, cấp độ, vai trò hoặc metadata. Base class là `.gv-badge`, kết hợp với class variant để chọn màu phù hợp với ngữ nghĩa thông tin.
+
+Badge không có hành vi click — chỉ để hiển thị. Nếu cần interaction (hover, toggle filter), hãy dùng `.gv-tag`.
 
 ## Variants
+
+Tất cả 7 variant của badge, mỗi variant mang màu ngữ nghĩa riêng:
 
 <div className="docs-demo">
   <div className="docs-demo-inline">
@@ -22,26 +26,372 @@ Badge phù hợp cho status, nhãn phân loại hoặc token ngắn. Base class 
   </div>
 </div>
 
+| Variant | Class | Màu | Ngữ nghĩa gợi ý |
+|---|---|---|---|
+| Primary | `.gv-badge-primary` | Vàng | Featured, mới, highlight, quan trọng |
+| Dark | `.gv-badge-dark` | Nâu tối | Admin, boss, tier cao, neutral đậm |
+| Danger | `.gv-badge-danger` | Đỏ | Khẩn cấp, lỗi, cảnh báo, critical |
+| Success | `.gv-badge-success` | Xanh lá | Hoàn thành, active, xác nhận, OK |
+| Info | `.gv-badge-info` | Xanh dương | Thông tin, hướng dẫn, neutral |
+| Purple | `.gv-badge-purple` | Tím | Premium, VIP, legendary, đặc biệt |
+| Outline | `.gv-badge-outline` | Viền nâu | Phụ, ít nhấn mạnh, placeholder role |
+
 ```html
-<span class="gv-badge gv-badge-success">Hoàn thành</span>
-<span class="gv-badge gv-badge-danger">Khẩn cấp</span>
+<span class="gv-badge gv-badge-primary">Primary</span>
+<span class="gv-badge gv-badge-success">Success</span>
+<span class="gv-badge gv-badge-danger">Danger</span>
+<span class="gv-badge gv-badge-outline">Outline</span>
 ```
 
-## Pixel badge
+## Playground tương tác
+
+Chọn ngữ cảnh để xem badge được dùng trong tình huống thực tế:
+
+<div className="docs-demo docs-badge-playground">
+  <input id="badge-ctx-status" className="docs-badge-toggle" type="radio" name="badge-ctx" defaultChecked />
+  <input id="badge-ctx-role" className="docs-badge-toggle" type="radio" name="badge-ctx" />
+  <input id="badge-ctx-priority" className="docs-badge-toggle" type="radio" name="badge-ctx" />
+  <input id="badge-ctx-game" className="docs-badge-toggle" type="radio" name="badge-ctx" />
+
+  <div className="docs-badge-toolbar">
+    <span className="docs-demo-label">Ngữ cảnh</span>
+    <div className="docs-badge-controls">
+      <label htmlFor="badge-ctx-status" className="docs-badge-control">Trạng thái</label>
+      <label htmlFor="badge-ctx-role" className="docs-badge-control">Vai trò</label>
+      <label htmlFor="badge-ctx-priority" className="docs-badge-control">Ưu tiên</label>
+      <label htmlFor="badge-ctx-game" className="docs-badge-control">Game</label>
+    </div>
+  </div>
+
+  <div className="docs-badge-canvas">
+
+    {/* --- Context: Status --- */}
+    <div className="docs-badge-preview docs-badge-preview--status">
+      <div className="docs-badge-row-list">
+        <div className="docs-badge-row">
+          <div>
+            <div className="docs-badge-row-title">Thiết kế giao diện badge component</div>
+            <div className="docs-badge-row-meta">UI · Cập nhật 2 giờ trước</div>
+          </div>
+          <span className="gv-badge gv-badge-success">Hoàn thành</span>
+        </div>
+        <div className="docs-badge-row">
+          <div>
+            <div className="docs-badge-row-title">Viết tài liệu hướng dẫn sử dụng</div>
+            <div className="docs-badge-row-meta">Docs · Cập nhật 45 phút trước</div>
+          </div>
+          <span className="gv-badge gv-badge-info">Đang làm</span>
+        </div>
+        <div className="docs-badge-row">
+          <div>
+            <div className="docs-badge-row-title">Fix bug thanh toán không phản hồi</div>
+            <div className="docs-badge-row-meta">Bug · Báo cáo 1 giờ trước</div>
+          </div>
+          <span className="gv-badge gv-badge-danger">Khẩn cấp</span>
+        </div>
+        <div className="docs-badge-row">
+          <div>
+            <div className="docs-badge-row-title">Review pull request từ team backend</div>
+            <div className="docs-badge-row-meta">Code review · Gửi 3 giờ trước</div>
+          </div>
+          <span className="gv-badge gv-badge-outline">Chờ duyệt</span>
+        </div>
+        <div className="docs-badge-row">
+          <div>
+            <div className="docs-badge-row-title">Ra mắt tính năng thông báo realtime</div>
+            <div className="docs-badge-row-meta">Feature · Dự kiến cuối tuần</div>
+          </div>
+          <span className="gv-badge gv-badge-primary">Mới</span>
+        </div>
+      </div>
+    </div>
+
+    {/* --- Context: Role --- */}
+    <div className="docs-badge-preview docs-badge-preview--role">
+      <div className="docs-badge-row-list">
+        <div className="docs-badge-row">
+          <div>
+            <div className="docs-badge-row-title">Nguyễn Văn An</div>
+            <div className="docs-badge-row-meta">an.nguyen@gavl.io · Tham gia 2 năm trước</div>
+          </div>
+          <span className="gv-badge gv-badge-dark">Admin</span>
+        </div>
+        <div className="docs-badge-row">
+          <div>
+            <div className="docs-badge-row-title">Trần Minh Châu</div>
+            <div className="docs-badge-row-meta">chau.tran@gavl.io · Tham gia 1 năm trước</div>
+          </div>
+          <span className="gv-badge gv-badge-purple">VIP</span>
+        </div>
+        <div className="docs-badge-row">
+          <div>
+            <div className="docs-badge-row-title">Lê Thị Bình</div>
+            <div className="docs-badge-row-meta">binh.le@gavl.io · Tham gia 8 tháng trước</div>
+          </div>
+          <span className="gv-badge gv-badge-info">Member</span>
+        </div>
+        <div className="docs-badge-row">
+          <div>
+            <div className="docs-badge-row-title">Phạm Quốc Hùng</div>
+            <div className="docs-badge-row-meta">hung.pham@gavl.io · Tham gia 3 tháng trước</div>
+          </div>
+          <span className="gv-badge gv-badge-success">Moderator</span>
+        </div>
+        <div className="docs-badge-row">
+          <div>
+            <div className="docs-badge-row-title">unknown_user_4921</div>
+            <div className="docs-badge-row-meta">Tài khoản bị hạn chế · Báo cáo 2 lần</div>
+          </div>
+          <span className="gv-badge gv-badge-danger">Banned</span>
+        </div>
+      </div>
+    </div>
+
+    {/* --- Context: Priority --- */}
+    <div className="docs-badge-preview docs-badge-preview--priority">
+      <div className="docs-badge-row-list">
+        <div className="docs-badge-row">
+          <div>
+            <div className="docs-badge-row-title">Server không phản hồi trong giờ cao điểm</div>
+            <div className="docs-badge-row-meta">Infrastructure · #GV-441</div>
+          </div>
+          <span className="gv-badge gv-badge-danger">Critical</span>
+        </div>
+        <div className="docs-badge-row">
+          <div>
+            <div className="docs-badge-row-title">Tối ưu load time trang chủ xuống dưới 2s</div>
+            <div className="docs-badge-row-meta">Performance · #GV-388</div>
+          </div>
+          <span className="gv-badge gv-badge-primary">High</span>
+        </div>
+        <div className="docs-badge-row">
+          <div>
+            <div className="docs-badge-row-title">Thêm dark mode cho trang cài đặt</div>
+            <div className="docs-badge-row-meta">UI Enhancement · #GV-302</div>
+          </div>
+          <span className="gv-badge gv-badge-info">Normal</span>
+        </div>
+        <div className="docs-badge-row">
+          <div>
+            <div className="docs-badge-row-title">Cập nhật font chữ trong footer</div>
+            <div className="docs-badge-row-meta">Design · #GV-214</div>
+          </div>
+          <span className="gv-badge gv-badge-outline">Low</span>
+        </div>
+      </div>
+    </div>
+
+    {/* --- Context: Game --- */}
+    <div className="docs-badge-preview docs-badge-preview--game">
+      <div style={{ display: 'grid', gap: '8px' }}>
+        <div className="docs-badge-game-row">
+          <div>
+            <div className="docs-badge-game-name">Rồng Đêm Cổ Đại</div>
+            <div className="docs-badge-game-sub">Boss cấp 85 · Vùng Hoang Mạc Lửa</div>
+          </div>
+          <div style={{ display: 'flex', gap: '6px' }}>
+            <span className="gv-badge gv-badge-danger gv-badge-pixel">BOSS</span>
+            <span className="gv-badge gv-badge-purple gv-badge-pixel">LEGEND</span>
+          </div>
+        </div>
+        <div className="docs-badge-game-row">
+          <div>
+            <div className="docs-badge-game-name">Kiếm Huyền Thiên Long</div>
+            <div className="docs-badge-game-sub">Vũ khí cổ đại · Sức tấn công +480</div>
+          </div>
+          <div style={{ display: 'flex', gap: '6px' }}>
+            <span className="gv-badge gv-badge-primary gv-badge-pixel">NEW</span>
+            <span className="gv-badge gv-badge-purple gv-badge-pixel">EPIC</span>
+          </div>
+        </div>
+        <div className="docs-badge-game-row">
+          <div>
+            <div className="docs-badge-game-name">Nhiệm vụ: Tìm Mảnh Bản Đồ</div>
+            <div className="docs-badge-game-sub">Side quest · Phần thưởng: 500 EXP</div>
+          </div>
+          <div style={{ display: 'flex', gap: '6px' }}>
+            <span className="gv-badge gv-badge-outline gv-badge-pixel">SIDE</span>
+          </div>
+        </div>
+        <div className="docs-badge-game-row">
+          <div>
+            <div className="docs-badge-game-name">Rương Phần Thưởng Huyền Thoại</div>
+            <div className="docs-badge-game-sub">Mở sau khi đánh bại Boss · 3 item ngẫu nhiên</div>
+          </div>
+          <div style={{ display: 'flex', gap: '6px' }}>
+            <span className="gv-badge gv-badge-success gv-badge-pixel">WIN</span>
+            <span className="gv-badge gv-badge-dark gv-badge-pixel">RARE</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <p className="docs-demo-note">
+    Bấm các nút để xem badge trong từng ngữ cảnh thực tế: quản lý trạng thái, phân quyền người dùng, ưu tiên tính năng và giao diện game.
+  </p>
+</div>
+
+## Pixel Badge
+
+Ghép thêm `.gv-badge-pixel` để đổi font sang kiểu pixel — phù hợp cho tag game item, level label, rarity tier và các yếu tố UI có tính chất retro/arcade.
 
 <div className="docs-demo">
   <div className="docs-demo-inline">
     <span className="gv-badge gv-badge-primary gv-badge-pixel">NEW</span>
     <span className="gv-badge gv-badge-dark gv-badge-pixel">BOSS</span>
+    <span className="gv-badge gv-badge-danger gv-badge-pixel">CRIT</span>
+    <span className="gv-badge gv-badge-success gv-badge-pixel">WIN</span>
+    <span className="gv-badge gv-badge-info gv-badge-pixel">INFO</span>
+    <span className="gv-badge gv-badge-purple gv-badge-pixel">LEGEND</span>
     <span className="gv-badge gv-badge-outline gv-badge-pixel">SIDE</span>
   </div>
 </div>
 
 ```html
+<!-- Pixel badge: chỉ thêm gv-badge-pixel vào bất kỳ variant nào -->
 <span class="gv-badge gv-badge-primary gv-badge-pixel">NEW</span>
+<span class="gv-badge gv-badge-purple gv-badge-pixel">LEGEND</span>
+<span class="gv-badge gv-badge-danger gv-badge-pixel">BOSS</span>
 ```
 
-## Khi nào dùng badge
+| Đặc điểm | Badge thường | Pixel Badge |
+|---|---|---|
+| Font | Body font (Be Vietnam Pro) | Pixel font (SVN Determination) |
+| Font size | 11px | 7px |
+| Padding | 3px 9px | 4px 8px |
+| Use case | UI chung, docs, form | Game UI, retro, arcade |
 
-- Dùng khi nội dung rất ngắn: trạng thái, loại item, cấp độ.
-- Nếu cần có hành vi hover/click như tag lọc, cân nhắc `.gv-tag` thay vì `.gv-badge`.
+## Anatomy
+
+| Class | Bắt buộc | Vai trò |
+|---|---|---|
+| `.gv-badge` | Có | Base badge — luôn phải có |
+| `.gv-badge-{variant}` | Có | Chọn màu ngữ nghĩa (primary, dark, danger…) |
+| `.gv-badge-pixel` | Không | Bật font pixel cho game-style label |
+
+## Ví dụ trong thực tế
+
+### Trong card header
+
+Dùng badge ngay cạnh tiêu đề card để biểu thị trạng thái hoặc loại:
+
+<div className="docs-demo">
+  <div className="docs-demo-grid">
+    <div className="gv-card">
+      <div className="gv-card-header">
+        <div className="gv-card-title-vi">Nhiệm vụ chính hôm nay</div>
+        <span className="gv-badge gv-badge-primary">Mới</span>
+      </div>
+      <div className="gv-card-body">
+        <p className="gv-card-desc">Hoàn thiện giao diện trang dashboard và kiểm tra responsive.</p>
+      </div>
+      <div className="gv-card-footer">
+        <button type="button" className="gv-btn gv-btn-primary gv-btn-sm">Bắt đầu</button>
+      </div>
+    </div>
+    <div className="gv-card gv-card-dark">
+      <div className="gv-card-header">
+        <div className="gv-card-title-vi">Raid Boss · Cấp 80</div>
+        <span className="gv-badge gv-badge-danger">Nguy hiểm</span>
+      </div>
+      <div className="gv-card-body">
+        <p className="gv-card-desc">Kẻ thù mạnh nhất vùng Hoang Địa, yêu cầu nhóm ít nhất 4 người.</p>
+      </div>
+      <div className="gv-card-footer">
+        <button type="button" className="gv-btn gv-btn-danger gv-btn-sm">Thách chiến</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+### Trong danh sách thành viên
+
+Badge đặt trong row giúp phân biệt vai trò nhanh mà không cần màu nền cho cả row:
+
+<div className="docs-demo">
+  <div className="docs-badge-row-list">
+    <div className="docs-badge-row">
+      <div>
+        <div className="docs-badge-row-title">Nguyễn Văn An</div>
+        <div className="docs-badge-row-meta">an.nguyen@gavl.io</div>
+      </div>
+      <span className="gv-badge gv-badge-dark">Admin</span>
+    </div>
+    <div className="docs-badge-row">
+      <div>
+        <div className="docs-badge-row-title">Trần Minh Châu</div>
+        <div className="docs-badge-row-meta">chau.tran@gavl.io</div>
+      </div>
+      <span className="gv-badge gv-badge-purple">VIP</span>
+    </div>
+    <div className="docs-badge-row">
+      <div>
+        <div className="docs-badge-row-title">Lê Thị Bình</div>
+        <div className="docs-badge-row-meta">binh.le@gavl.io</div>
+      </div>
+      <span className="gv-badge gv-badge-info">Member</span>
+    </div>
+  </div>
+</div>
+
+### Badge nhiều nhãn trong một dòng
+
+Có thể dùng nhiều badge song song để mô tả nhiều thuộc tính cùng lúc:
+
+<div className="docs-demo">
+  <div className="docs-demo-stack">
+    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+      <span style={{ fontSize: '13px', fontWeight: '600', color: '#2a1f14', marginRight: '4px' }}>Rồng Đêm Cổ Đại</span>
+      <span className="gv-badge gv-badge-danger gv-badge-pixel">BOSS</span>
+      <span className="gv-badge gv-badge-purple gv-badge-pixel">LEGEND</span>
+      <span className="gv-badge gv-badge-primary gv-badge-pixel">LV.85</span>
+    </div>
+    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+      <span style={{ fontSize: '13px', fontWeight: '600', color: '#2a1f14', marginRight: '4px' }}>Tính năng Dark Mode</span>
+      <span className="gv-badge gv-badge-primary">Mới</span>
+      <span className="gv-badge gv-badge-success">Ổn định</span>
+    </div>
+    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+      <span style={{ fontSize: '13px', fontWeight: '600', color: '#2a1f14', marginRight: '4px' }}>Fix bug thanh toán</span>
+      <span className="gv-badge gv-badge-danger">Critical</span>
+      <span className="gv-badge gv-badge-outline">In Review</span>
+    </div>
+  </div>
+</div>
+
+```html
+<span class="gv-badge gv-badge-danger gv-badge-pixel">BOSS</span>
+<span class="gv-badge gv-badge-purple gv-badge-pixel">LEGEND</span>
+<span class="gv-badge gv-badge-primary gv-badge-pixel">LV.85</span>
+```
+
+## Badge vs Tag
+
+| Tiêu chí | Badge `.gv-badge` | Tag `.gv-tag` |
+|---|---|---|
+| Mục đích | Hiển thị thông tin, nhãn tĩnh | Lọc, toggle, tương tác |
+| Click | Không | Có (cursor pointer, hover) |
+| Prefix `#` | Không | Có (tự động qua `::before`) |
+| Font | Nhỏ hơn (11px) | Lớn hơn (12px) |
+| Khi nào dùng | Status, role, metadata | Tag lọc, category filter |
+
+## Khi nào dùng variant nào
+
+- **`primary`** (vàng) — mặc định cho nội dung mới, featured hoặc cần thu hút nhẹ.
+- **`success`** (xanh lá) — hoàn thành, kích hoạt, trạng thái tốt, xác nhận.
+- **`danger`** (đỏ) — khẩn cấp, lỗi, cảnh báo, cần hành động ngay.
+- **`info`** (xanh dương) — thông tin trung tính, đang xử lý, không yêu cầu hành động.
+- **`dark`** (nâu tối) — label phụ cần contrast cao, admin, boss, tier cao.
+- **`purple`** (tím) — phân loại đặc biệt, VIP, legendary, premium content.
+- **`outline`** (viền) — khi muốn badge không quá nổi, phụ trợ hoặc trạng thái pending.
+- **`pixel`** — bổ sung vào bất kỳ variant nào khi cần cảm giác retro/arcade.
+
+## Ghi chú triển khai
+
+- Badge là `inline-flex`, phù hợp đặt cạnh text hoặc bên trong flex container.
+- Không dùng text quá dài — giới hạn lý tưởng là **1–3 từ** (ví dụ: "Hoàn thành", "VIP", "Level 80").
+- Badge có `white-space: nowrap`, không tự xuống dòng.
+- Khi hiển thị nhiều badge trong một hàng, bọc bằng flex container với `gap` để kiểm soát khoảng cách.
+- Pixel badge có font size 7px — chỉ dùng cho text viết hoa ngắn, không dùng cho tiếng Việt có dấu.

@@ -6,9 +6,13 @@ description: Khối thông báo trạng thái cho info, success, warning và dan
 
 # Alert
 
-Alert dùng để hiển thị thông báo nội tuyến. Base class là `.gv-alert`, thường ghép thêm `.gv-alert-info`, `.gv-alert-success`, `.gv-alert-warning`, `.gv-alert-danger`.
+`Alert` là khối thông báo nội tuyến dùng để truyền đạt thông tin quan trọng theo ngữ nghĩa — hướng dẫn, xác nhận, cảnh báo hoặc lỗi. Base class là `.gv-alert`, ghép thêm `.gv-alert-{variant}` để chọn màu phù hợp với mức độ.
+
+Alert thường dùng để phản hồi hành động người dùng, hiển thị trạng thái hệ thống, hoặc cung cấp ngữ cảnh quan trọng trước khi người dùng tiếp tục.
 
 ## Variants
+
+Bốn variant chính, mỗi variant mang màu và ngữ nghĩa riêng:
 
 <div className="docs-demo">
   <div className="docs-demo-stack">
@@ -16,29 +20,211 @@ Alert dùng để hiển thị thông báo nội tuyến. Base class là `.gv-al
       <span className="gv-alert-icon">ℹ</span>
       <div>
         <div className="gv-alert-title">Info</div>
-        Cần nạp thêm font trước khi dùng đầy đủ UI tiếng Việt.
+        Thông tin trung tính — hướng dẫn, gợi ý hoặc context không yêu cầu hành động ngay.
       </div>
     </div>
     <div className="gv-alert gv-alert-success">
       <span className="gv-alert-icon">✔</span>
       <div>
         <div className="gv-alert-title">Success</div>
-        Theme đã được import thành công.
+        Thao tác hoàn tất — xác nhận lưu thành công, import xong, deploy OK.
       </div>
     </div>
     <div className="gv-alert gv-alert-warning">
       <span className="gv-alert-icon">⚠</span>
       <div>
         <div className="gv-alert-title">Warning</div>
-        Alert dài vẫn nên ưu tiên body font để giữ độ đọc ổn định.
+        Cảnh báo — người dùng nên chú ý trước khi tiếp tục nhưng chưa có lỗi.
       </div>
     </div>
     <div className="gv-alert gv-alert-danger">
       <span className="gv-alert-icon">✖</span>
       <div>
         <div className="gv-alert-title">Danger</div>
-        Không tìm thấy file CSS trong bundle hiện tại.
+        Lỗi nghiêm trọng — thao tác thất bại, dữ liệu không hợp lệ, cần xử lý ngay.
       </div>
+    </div>
+  </div>
+</div>
+
+| Variant | Class | Icon gợi ý | Ngữ nghĩa |
+|---|---|---|---|
+| Info | `.gv-alert-info` | `ℹ` | Hướng dẫn, context, gợi ý trung tính |
+| Success | `.gv-alert-success` | `✔` | Thành công, xác nhận, hoàn tất |
+| Warning | `.gv-alert-warning` | `⚠` | Cảnh báo, cần chú ý, rủi ro tiềm ẩn |
+| Danger | `.gv-alert-danger` | `✖` | Lỗi, thất bại, yêu cầu xử lý ngay |
+
+## Playground tương tác
+
+Bấm để xem từng variant với nội dung thực tế và mô tả ngữ cảnh phù hợp:
+
+<div className="docs-demo docs-alert-playground">
+  <input id="alert-type-info" className="docs-alert-toggle" type="radio" name="alert-type" defaultChecked />
+  <input id="alert-type-success" className="docs-alert-toggle" type="radio" name="alert-type" />
+  <input id="alert-type-warning" className="docs-alert-toggle" type="radio" name="alert-type" />
+  <input id="alert-type-danger" className="docs-alert-toggle" type="radio" name="alert-type" />
+
+  <div className="docs-alert-toolbar">
+    <span className="docs-demo-label">Variant</span>
+    <div className="docs-alert-controls">
+      <label htmlFor="alert-type-info" className="docs-alert-control">Info</label>
+      <label htmlFor="alert-type-success" className="docs-alert-control">Success</label>
+      <label htmlFor="alert-type-warning" className="docs-alert-control">Warning</label>
+      <label htmlFor="alert-type-danger" className="docs-alert-control">Danger</label>
+    </div>
+  </div>
+
+  <div className="docs-alert-canvas">
+
+    {/* --- Info --- */}
+    <div className="docs-alert-preview docs-alert-preview--info">
+      <div className="gv-alert gv-alert-info">
+        <span className="gv-alert-icon">ℹ</span>
+        <div>
+          <div className="gv-alert-title">Cài đặt font tiếng Việt</div>
+          Để hiển thị đúng tất cả ký tự tiếng Việt, hãy import font <strong>Be Vietnam Pro</strong> trước khi dùng GAVL UI. Xem hướng dẫn trong trang Installation.
+        </div>
+      </div>
+      <div style={{ padding: '12px 14px', background: 'rgba(221, 238, 255, 0.3)', borderRadius: '8px', borderLeft: '3px solid #4a90d9' }}>
+        <div style={{ fontSize: '12px', fontWeight: '700', color: '#1e3a5f', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Khi nào dùng Info</div>
+        <ul style={{ margin: 0, paddingLeft: '16px', fontSize: '12px', color: '#2a4a6e', lineHeight: '1.7' }}>
+          <li>Cung cấp context hoặc điều kiện trước khi người dùng thực hiện thao tác</li>
+          <li>Hướng dẫn bước tiếp theo trong một flow</li>
+          <li>Ghi chú về dependency, cấu hình, hoặc yêu cầu hệ thống</li>
+          <li>Thông tin không gây rủi ro, không yêu cầu hành động ngay</li>
+        </ul>
+      </div>
+    </div>
+
+    {/* --- Success --- */}
+    <div className="docs-alert-preview docs-alert-preview--success">
+      <div className="gv-alert gv-alert-success">
+        <span className="gv-alert-icon">✔</span>
+        <div>
+          <div className="gv-alert-title">Lưu thành công</div>
+          Cấu hình theme đã được cập nhật. Thay đổi sẽ có hiệu lực sau khi reload trang. Không cần rebuild project.
+        </div>
+      </div>
+      <div style={{ padding: '12px 14px', background: 'rgba(221, 245, 221, 0.3)', borderRadius: '8px', borderLeft: '3px solid #3a9e3a' }}>
+        <div style={{ fontSize: '12px', fontWeight: '700', color: '#1a4a1a', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Khi nào dùng Success</div>
+        <ul style={{ margin: 0, paddingLeft: '16px', fontSize: '12px', color: '#2a5e2a', lineHeight: '1.7' }}>
+          <li>Xác nhận thao tác hoàn thành: lưu, upload, submit, deploy</li>
+          <li>Phản hồi sau khi form được gửi thành công</li>
+          <li>Thông báo trạng thái hệ thống OK sau khi khởi động lại</li>
+          <li>Import/export file thành công</li>
+        </ul>
+      </div>
+    </div>
+
+    {/* --- Warning --- */}
+    <div className="docs-alert-preview docs-alert-preview--warning">
+      <div className="gv-alert gv-alert-warning">
+        <span className="gv-alert-icon">⚠</span>
+        <div>
+          <div className="gv-alert-title">Phiên đăng nhập sắp hết hạn</div>
+          Bạn sẽ bị đăng xuất sau <strong>5 phút</strong> không hoạt động. Hãy lưu công việc đang làm để tránh mất dữ liệu.
+        </div>
+      </div>
+      <div style={{ padding: '12px 14px', background: 'rgba(255, 248, 221, 0.5)', borderRadius: '8px', borderLeft: '3px solid #c9952a' }}>
+        <div style={{ fontSize: '12px', fontWeight: '700', color: '#5c3d1e', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Khi nào dùng Warning</div>
+        <ul style={{ margin: 0, paddingLeft: '16px', fontSize: '12px', color: '#5c3d1e', lineHeight: '1.7' }}>
+          <li>Thao tác sắp hết hạn hoặc gần đến giới hạn (quota, session, time)</li>
+          <li>Hành động có thể ảnh hưởng đến dữ liệu, cần xem xét trước khi tiếp tục</li>
+          <li>Cảnh báo về cấu hình không tối ưu (nhưng không gây lỗi)</li>
+          <li>Deprecation notice — tính năng sẽ bị xóa trong phiên bản tới</li>
+        </ul>
+      </div>
+    </div>
+
+    {/* --- Danger --- */}
+    <div className="docs-alert-preview docs-alert-preview--danger">
+      <div className="gv-alert gv-alert-danger">
+        <span className="gv-alert-icon">✖</span>
+        <div>
+          <div className="gv-alert-title">Không tìm thấy file cấu hình</div>
+          File <code>gavl-ui.css</code> không tồn tại trong bundle hiện tại. Kiểm tra lại đường dẫn import hoặc chạy lại <code>npm install</code> để khôi phục.
+        </div>
+      </div>
+      <div style={{ padding: '12px 14px', background: 'rgba(255, 238, 238, 0.5)', borderRadius: '8px', borderLeft: '3px solid #d93a3a' }}>
+        <div style={{ fontSize: '12px', fontWeight: '700', color: '#5e1a1a', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Khi nào dùng Danger</div>
+        <ul style={{ margin: 0, paddingLeft: '16px', fontSize: '12px', color: '#5e1a1a', lineHeight: '1.7' }}>
+          <li>Lỗi ngăn không cho hoàn tất thao tác: submit thất bại, API lỗi</li>
+          <li>Validation form — dữ liệu nhập không hợp lệ</li>
+          <li>Cảnh báo về hành động không thể hoàn tác (xóa dữ liệu)</li>
+          <li>Lỗi hệ thống cần người dùng xử lý ngay</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <p className="docs-demo-note">
+    Bấm các nút để chuyển giữa các variant và xem hướng dẫn ngữ cảnh phù hợp cho từng loại.
+  </p>
+</div>
+
+## Không có tiêu đề (Minimal)
+
+Bỏ `.gv-alert-title` khi thông báo ngắn và ngữ nghĩa đã rõ qua màu sắc và icon:
+
+<div className="docs-demo">
+  <div className="docs-demo-stack">
+    <div className="gv-alert gv-alert-info">
+      <span className="gv-alert-icon">ℹ</span>
+      <div>Font Be Vietnam Pro được khuyến nghị cho tiếng Việt.</div>
+    </div>
+    <div className="gv-alert gv-alert-success">
+      <span className="gv-alert-icon">✔</span>
+      <div>Cấu hình đã được lưu thành công.</div>
+    </div>
+    <div className="gv-alert gv-alert-warning">
+      <span className="gv-alert-icon">⚠</span>
+      <div>Bạn có thay đổi chưa lưu. Thoát ra sẽ mất dữ liệu.</div>
+    </div>
+    <div className="gv-alert gv-alert-danger">
+      <span className="gv-alert-icon">✖</span>
+      <div>Kết nối thất bại. Vui lòng kiểm tra lại đường truyền.</div>
+    </div>
+  </div>
+</div>
+
+```html
+<!-- Alert tối giản — không cần gv-alert-title -->
+<div class="gv-alert gv-alert-success">
+  <span class="gv-alert-icon">✔</span>
+  <div>Cấu hình đã được lưu thành công.</div>
+</div>
+```
+
+## Có hành động (Action Alert)
+
+Thêm button hoặc link vào nội dung alert để cho phép người dùng phản hồi trực tiếp:
+
+<div className="docs-demo">
+  <div className="docs-demo-stack">
+    <div className="gv-alert gv-alert-warning">
+      <span className="gv-alert-icon">⚠</span>
+      <div style={{ flex: 1 }}>
+        <div className="gv-alert-title">Phiên làm việc sắp hết hạn</div>
+        Bạn sẽ bị đăng xuất sau 5 phút. Hãy lưu công việc hoặc gia hạn phiên.
+      </div>
+      <button type="button" className="gv-btn gv-btn-primary gv-btn-sm" style={{ flexShrink: 0, alignSelf: 'flex-start' }}>Gia hạn</button>
+    </div>
+    <div className="gv-alert gv-alert-danger">
+      <span className="gv-alert-icon">✖</span>
+      <div style={{ flex: 1 }}>
+        <div className="gv-alert-title">Gửi form thất bại</div>
+        Email không đúng định dạng. Kiểm tra lại thông tin và thử lại.
+      </div>
+      <button type="button" className="gv-btn gv-btn-danger gv-btn-sm" style={{ flexShrink: 0, alignSelf: 'flex-start' }}>Thử lại</button>
+    </div>
+    <div className="gv-alert gv-alert-info">
+      <span className="gv-alert-icon">ℹ</span>
+      <div style={{ flex: 1 }}>
+        <div className="gv-alert-title">Cập nhật phiên bản mới</div>
+        GAVL UI v2.1.0 đã có. Bao gồm cải tiến badge pixel và Alert action support.
+      </div>
+      <button type="button" className="gv-btn gv-btn-primary gv-btn-sm" style={{ flexShrink: 0, alignSelf: 'flex-start' }}>Xem thay đổi</button>
     </div>
   </div>
 </div>
@@ -46,9 +232,126 @@ Alert dùng để hiển thị thông báo nội tuyến. Base class là `.gv-al
 ```html
 <div class="gv-alert gv-alert-warning">
   <span class="gv-alert-icon">⚠</span>
+  <div style="flex: 1">
+    <div class="gv-alert-title">Phiên làm việc sắp hết hạn</div>
+    Bạn sẽ bị đăng xuất sau 5 phút.
+  </div>
+  <button class="gv-btn gv-btn-primary gv-btn-sm">Gia hạn</button>
+</div>
+```
+
+## Anatomy
+
+| Class | Bắt buộc | Vai trò |
+|---|---|---|
+| `.gv-alert` | Có | Container alert chính |
+| `.gv-alert-{variant}` | Có | Màu ngữ nghĩa: `info`, `success`, `warning`, `danger` |
+| `.gv-alert-icon` | Không | Icon hoặc ký hiệu trạng thái ở đầu alert |
+| `.gv-alert-title` | Không | Tiêu đề in hoa, đậm — bỏ qua nếu thông báo đủ ngắn |
+
+**Cấu trúc đầy đủ:**
+
+```html
+<div class="gv-alert gv-alert-warning">
+  <span class="gv-alert-icon">⚠</span>
   <div>
     <div class="gv-alert-title">Warning</div>
-    Alert dài vẫn nên ưu tiên body font để giữ độ đọc ổn định.
+    Nội dung mô tả chi tiết về cảnh báo.
   </div>
 </div>
 ```
+
+## Ví dụ trong thực tế
+
+### Alert trong luồng onboarding
+
+<div className="docs-demo">
+  <div className="docs-demo-stack">
+    <div className="gv-alert gv-alert-info">
+      <span className="gv-alert-icon">ℹ</span>
+      <div>
+        <div className="gv-alert-title">Bước 1 / 3 · Cài đặt</div>
+        Import <code>gavl-ui.css</code> vào entry point trước khi dùng bất kỳ class nào. Nếu dùng Tailwind, đặt import ở đầu file <code>global.css</code>.
+      </div>
+    </div>
+    <div className="gv-alert gv-alert-success">
+      <span className="gv-alert-icon">✔</span>
+      <div>
+        <div className="gv-alert-title">Bước 2 / 3 · Xác nhận</div>
+        Theme đã được load thành công. Các CSS variable của GAVL UI đã sẵn sàng toàn cục.
+      </div>
+    </div>
+    <div className="gv-alert gv-alert-warning">
+      <span className="gv-alert-icon">⚠</span>
+      <div>
+        <div className="gv-alert-title">Bước 3 / 3 · Lưu ý</div>
+        Nếu dùng font pixel (<code>SVN Determination Sans</code>), cần self-host file font hoặc import thủ công — không có trên Google Fonts.
+      </div>
+    </div>
+  </div>
+</div>
+
+### Alert xác nhận sau submit form
+
+<div className="docs-demo">
+  <div className="gv-card">
+    <div className="gv-card-body">
+      <div className="gv-card-title-vi">Liên hệ hỗ trợ</div>
+      <div style={{ display: 'grid', gap: '10px', marginTop: '12px' }}>
+        <input className="gv-input" type="text" placeholder="Họ và tên" disabled value="Nguyễn Văn An" />
+        <input className="gv-input" type="email" placeholder="Email" disabled value="an@gavl.io" />
+      </div>
+    </div>
+    <div className="gv-card-footer">
+      <div className="docs-demo-stack">
+        <div className="gv-alert gv-alert-success">
+          <span className="gv-alert-icon">✔</span>
+          <div>
+            <div className="gv-alert-title">Gửi thành công</div>
+            Yêu cầu của bạn đã được ghi nhận. Đội hỗ trợ sẽ phản hồi trong vòng 24 giờ.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+### Alert lỗi validation
+
+<div className="docs-demo">
+  <div className="gv-card">
+    <div className="gv-card-body">
+      <div className="gv-card-title-vi">Đăng ký tài khoản</div>
+      <div style={{ display: 'grid', gap: '10px', marginTop: '12px' }}>
+        <div className="gv-alert gv-alert-danger">
+          <span className="gv-alert-icon">✖</span>
+          <div>
+            <div className="gv-alert-title">3 lỗi cần sửa</div>
+            <ul style={{ margin: '6px 0 0', paddingLeft: '16px', fontSize: '12px', lineHeight: '1.7' }}>
+              <li>Email không đúng định dạng</li>
+              <li>Mật khẩu phải có ít nhất 8 ký tự</li>
+              <li>Tên đăng nhập đã tồn tại</li>
+            </ul>
+          </div>
+        </div>
+        <input className="gv-input gv-input-error" type="email" placeholder="Email" value="not-an-email" readOnly />
+        <input className="gv-input gv-input-error" type="password" placeholder="Mật khẩu" value="123" readOnly />
+      </div>
+    </div>
+  </div>
+</div>
+
+## Khi nào dùng loại nào
+
+- **`info`** — thông tin context, gợi ý, yêu cầu môi trường. Không yêu cầu hành động ngay.
+- **`success`** — phản hồi sau thao tác thành công. Thường hiển thị ngắn (3–5 giây) hoặc inline.
+- **`warning`** — rủi ro tiềm ẩn, cảnh báo trước khi hành động. Người dùng có thể tiếp tục nhưng nên cân nhắc.
+- **`danger`** — lỗi xảy ra, thao tác thất bại, cần can thiệp. Luôn hiển thị cho đến khi người dùng xử lý.
+
+## Ghi chú triển khai
+
+- Alert là `flex` container — thêm `style="flex: 1"` vào `<div>` chứa text nếu muốn nút căn sát phải.
+- `.gv-alert-title` dùng `text-transform: uppercase` — tránh nhập sẵn chữ hoa trong HTML.
+- `.gv-alert-icon` có `flex-shrink: 0` và `margin-top: 2px` để căn với dòng đầu của text.
+- Alert không tự đóng — nếu cần dismiss, cần xử lý bằng JavaScript hoặc dùng `.gv-toast` thay thế.
+- Đặt alert ở đầu form hoặc section để người dùng thấy ngay, không ẩn bên dưới nội dung dài.

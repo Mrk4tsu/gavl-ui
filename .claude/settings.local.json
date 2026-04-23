@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /c/Users/DELL/Desktop/GavlUI/ui-docs -type d -not -path */node_modules*)"
+    ]
+  }
+}
