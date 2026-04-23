@@ -1,26 +1,259 @@
 ---
 sidebar_position: 5
 title: Form
-description: Input, select, textarea và nhóm form cơ bản của GAVL UI.
+description: Hệ thống field, label, helper, validation state và layout form của GAVL UI.
 ---
 
 # Form
 
-GAVL UI cung cấp bộ class cho input text, select, textarea, helper text, error state và input group.
+`Form` trong GAVL UI là tập hợp các class CSS để dựng trường nhập liệu rõ ràng, dễ scan và nhất quán về trạng thái. Bộ này bao phủ các thành phần quan trọng nhất của một form thực tế: `label`, `input`, `select`, `textarea`, `helper text`, `error text`, `input group`, cùng một số control như `checkbox`, `radio` và `toggle`.
 
-## Input cơ bản
+Điểm cần lưu ý: GAVL UI chỉ cung cấp phần trình bày. Validation logic, submit flow, loading state, disable khi đang gửi, hiển thị lỗi từ API hay quản lý dữ liệu form vẫn do JavaScript của ứng dụng đảm nhiệm.
+
+## Tổng quan nhanh
+
+<div className="docs-demo">
+  <div className="docs-demo-grid">
+    <div className="docs-demo-surface">
+      <div className="gv-label">BASE FIELD</div>
+      <div className="docs-form-grid" style={{ marginTop: '12px' }}>
+        <div className="gv-form-group">
+          <label className="gv-form-label" htmlFor="form-overview-email">EMAIL</label>
+          <input id="form-overview-email" className="gv-input" type="email" placeholder="you@example.com" />
+          <div className="gv-form-helper">Field mặc định với helper text bên dưới.</div>
+        </div>
+      </div>
+    </div>
+
+    <div className="docs-demo-surface">
+      <div className="gv-label">VALIDATION</div>
+      <div className="docs-form-grid" style={{ marginTop: '12px' }}>
+        <div className="gv-form-group">
+          <label className="gv-form-label-vi" htmlFor="form-overview-username">Tên đăng nhập</label>
+          <input id="form-overview-username" className="gv-input gv-input-success" type="text" value="gavl_player" readOnly />
+          <div className="gv-form-helper">Tên này có thể sử dụng.</div>
+        </div>
+        <div className="gv-form-group">
+          <label className="gv-form-label-vi" htmlFor="form-overview-password">Mật khẩu</label>
+          <input id="form-overview-password" className="gv-input gv-input-error" type="password" value="123" readOnly />
+          <div className="gv-form-error">Mật khẩu phải có ít nhất 8 ký tự.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+## Playground tương tác
+
+Bấm các nút bên dưới để xem cùng một form ở ba trạng thái phổ biến: mặc định, có lỗi validate và gửi thành công. Playground này chỉ dùng CSS để minh hoạ chuyển trạng thái trong tài liệu.
+
+<div className="docs-demo docs-form-playground">
+  <input id="form-state-default" className="docs-form-toggle" type="radio" name="form-state" defaultChecked />
+  <input id="form-state-error" className="docs-form-toggle" type="radio" name="form-state" />
+  <input id="form-state-success" className="docs-form-toggle" type="radio" name="form-state" />
+
+  <div className="docs-form-toolbar">
+    <span className="docs-demo-label">Trạng thái</span>
+    <div className="docs-form-controls">
+      <label htmlFor="form-state-default" className="docs-form-control">Mặc định</label>
+      <label htmlFor="form-state-error" className="docs-form-control">Có lỗi</label>
+      <label htmlFor="form-state-success" className="docs-form-control">Thành công</label>
+    </div>
+  </div>
+
+  <div className="docs-form-canvas">
+    <div className="docs-form-preview docs-form-preview--default">
+      <div className="docs-form-shell">
+        <div className="docs-form-shell-header">
+          <div>
+            <div className="gv-card-title-vi">Tạo hồ sơ nhân vật</div>
+            <div className="gv-caption">Ví dụ form sạch, chưa có validate message.</div>
+          </div>
+          <button type="button" className="gv-btn gv-btn-primary gv-btn-sm">Lưu nháp</button>
+        </div>
+
+        <div className="docs-form-grid docs-form-grid--two">
+          <div className="gv-form-group">
+            <label className="gv-form-label" htmlFor="playground-default-name">DISPLAY NAME</label>
+            <input id="playground-default-name" className="gv-input" type="text" placeholder="Nhập tên hiển thị" />
+            <div className="gv-form-helper">Tên này sẽ hiển thị trong hồ sơ công khai.</div>
+          </div>
+          <div className="gv-form-group">
+            <label className="gv-form-label" htmlFor="playground-default-email">EMAIL</label>
+            <input id="playground-default-email" className="gv-input" type="email" placeholder="you@example.com" />
+            <div className="gv-form-helper">Dùng để nhận thông báo bảo mật và khôi phục tài khoản.</div>
+          </div>
+        </div>
+
+        <div className="gv-form-group">
+          <label className="gv-form-label-vi" htmlFor="playground-default-role">Vai trò chính</label>
+          <select id="playground-default-role" className="gv-select" defaultValue="support">
+            <option value="tank">Tank</option>
+            <option value="support">Support</option>
+            <option value="mage">Mage</option>
+            <option value="archer">Archer</option>
+          </select>
+          <div className="gv-form-helper">Chọn role để hệ thống gợi ý cấu hình phù hợp.</div>
+        </div>
+
+        <div className="gv-form-group">
+          <label className="gv-form-label-vi" htmlFor="playground-default-bio">Mô tả ngắn</label>
+          <textarea id="playground-default-bio" className="gv-textarea" rows="4" defaultValue="Mình thích hỗ trợ team, ưu tiên giao tiếp rõ ràng và giữ nhịp trận đấu ổn định." />
+          <div className="gv-form-helper">Gợi ý 80-160 ký tự để nội dung ngắn gọn và dễ đọc.</div>
+        </div>
+
+        <div className="docs-form-inline-actions">
+          <label className="gv-check-group" htmlFor="playground-default-public">
+            <input id="playground-default-public" type="checkbox" defaultChecked />
+            <span className="gv-check-box" />
+            <span className="gv-check-label">Hiển thị hồ sơ công khai</span>
+          </label>
+          <label className="gv-toggle" htmlFor="playground-default-notify">
+            <input id="playground-default-notify" type="checkbox" defaultChecked />
+            <span className="gv-toggle-track" />
+            <span className="gv-toggle-label">Nhận email cập nhật</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div className="docs-form-preview docs-form-preview--error">
+      <div className="docs-form-shell">
+        <div className="gv-alert gv-alert-danger">
+          <span className="gv-alert-icon">✖</span>
+          <div>
+            <div className="gv-alert-title">2 lỗi cần sửa</div>
+            Email chưa đúng định dạng và phần mô tả chưa đủ số ký tự tối thiểu.
+          </div>
+        </div>
+
+        <div className="docs-form-grid docs-form-grid--two">
+          <div className="gv-form-group">
+            <label className="gv-form-label" htmlFor="playground-error-name">DISPLAY NAME</label>
+            <input id="playground-error-name" className="gv-input" type="text" value="GAVL Player" readOnly />
+            <div className="gv-form-helper">Tên hiển thị đang hợp lệ.</div>
+          </div>
+          <div className="gv-form-group">
+            <label className="gv-form-label" htmlFor="playground-error-email">EMAIL</label>
+            <input id="playground-error-email" className="gv-input gv-input-error" type="email" value="gavl@" readOnly />
+            <div className="gv-form-error">Email phải có đầy đủ tên miền, ví dụ `name@example.com`.</div>
+          </div>
+        </div>
+
+        <div className="gv-form-group">
+          <label className="gv-form-label-vi" htmlFor="playground-error-bio">Mô tả ngắn</label>
+          <textarea id="playground-error-bio" className="gv-textarea gv-input-error" rows="4" defaultValue="Hỗ trợ team." />
+          <div className="gv-form-error">Mô tả cần ít nhất 40 ký tự để người xem hiểu rõ vai trò của bạn.</div>
+        </div>
+
+        <div className="docs-form-inline-actions">
+          <button type="button" className="gv-btn gv-btn-danger gv-btn-sm">Kiểm tra lại</button>
+          <button type="button" className="gv-btn gv-btn-ghost gv-btn-sm">Lưu nháp</button>
+        </div>
+      </div>
+    </div>
+
+    <div className="docs-form-preview docs-form-preview--success">
+      <div className="docs-form-shell">
+        <div className="gv-alert gv-alert-success">
+          <span className="gv-alert-icon">✔</span>
+          <div>
+            <div className="gv-alert-title">Lưu thành công</div>
+            Hồ sơ đã được cập nhật. Các thay đổi sẽ xuất hiện trên trang công khai sau vài giây.
+          </div>
+        </div>
+
+        <div className="docs-form-grid docs-form-grid--two">
+          <div className="gv-form-group">
+            <label className="gv-form-label" htmlFor="playground-success-name">DISPLAY NAME</label>
+            <input id="playground-success-name" className="gv-input gv-input-success" type="text" value="GAVL Player" readOnly />
+            <div className="gv-form-helper">Tên hiển thị đã được xác nhận.</div>
+          </div>
+          <div className="gv-form-group">
+            <label className="gv-form-label" htmlFor="playground-success-email">EMAIL</label>
+            <input id="playground-success-email" className="gv-input gv-input-success" type="email" value="player@gavl.io" readOnly />
+            <div className="gv-form-helper">Email đã được lưu thành công.</div>
+          </div>
+        </div>
+
+        <div className="docs-form-summary">
+          <div className="docs-form-summary-item">
+            <span className="docs-form-summary-label">Role</span>
+            <strong>Support</strong>
+          </div>
+          <div className="docs-form-summary-item">
+            <span className="docs-form-summary-label">Quyền riêng tư</span>
+            <strong>Công khai</strong>
+          </div>
+          <div className="docs-form-summary-item">
+            <span className="docs-form-summary-label">Thông báo</span>
+            <strong>Đang bật</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p className="docs-demo-note">
+    Trạng thái màu trong GAVL UI thường được gắn trực tiếp vào field bằng `.gv-input-error` hoặc `.gv-input-success`, còn thông báo tổng quan nên đặt phía trên form bằng `Alert`.
+  </p>
+</div>
+
+## Anatomy
+
+| Class | Bắt buộc | Vai trò |
+|---|---|---|
+| `.gv-form-group` | Nên có | Gom `label`, field và phần mô tả thành một cụm rõ ràng |
+| `.gv-form-label` | Không | Label kiểu pixel, hợp với text ngắn như `EMAIL`, `ROLE`, `PASSWORD` |
+| `.gv-form-label-vi` | Không | Label dễ đọc hơn cho tiếng Việt dài hoặc câu tự nhiên |
+| `.gv-input` | Có | Text input mặc định |
+| `.gv-select` | Không | Select dropdown cùng hệ style với input |
+| `.gv-textarea` | Không | Ô nhập nhiều dòng |
+| `.gv-form-helper` | Không | Mô tả bổ sung, hướng dẫn nhập liệu, gợi ý định dạng |
+| `.gv-form-error` | Không | Thông báo lỗi inline dưới field |
+| `.gv-input-error` | Không | Tô trạng thái lỗi cho `input`, `select`, `textarea` |
+| `.gv-input-success` | Không | Tô trạng thái thành công hoặc hợp lệ |
+| `.gv-input-group` | Không | Gom field với prefix/suffix như `@`, `https://`, `.com` |
+| `.gv-input-addon` | Không | Prefix/suffix đứng hai bên input |
+
+## Cấu trúc chuẩn
+
+```html
+<div class="gv-form-group">
+  <label class="gv-form-label-vi" for="email">Email liên hệ</label>
+  <input id="email" class="gv-input" type="email" placeholder="you@example.com" />
+  <div class="gv-form-helper">Chúng tôi chỉ dùng email này để phản hồi yêu cầu hỗ trợ.</div>
+</div>
+```
+
+## Input cơ bản và trạng thái
+
+Đây là nhóm field dùng nhiều nhất trong form nhập liệu thông thường:
 
 <div className="docs-demo">
   <div className="docs-form-grid docs-form-grid--two">
     <div className="gv-form-group">
-      <label className="gv-form-label" htmlFor="demo-email">Email</label>
-      <input id="demo-email" className="gv-input" type="email" placeholder="you@example.com" />
-      <div className="gv-form-helper">Helper text mặc định.</div>
+      <label className="gv-form-label" htmlFor="demo-basic-email">EMAIL</label>
+      <input id="demo-basic-email" className="gv-input" type="email" placeholder="you@example.com" />
+      <div className="gv-form-helper">Helper text mặc định, dùng để mô tả field.</div>
     </div>
+
     <div className="gv-form-group">
-      <label className="gv-form-label" htmlFor="demo-name">Tên hiển thị</label>
-      <input id="demo-name" className="gv-input gv-input-success" type="text" defaultValue="GAVL Player" />
-      <div className="gv-form-helper">Input với state thành công.</div>
+      <label className="gv-form-label-vi" htmlFor="demo-basic-success">Tên hiển thị</label>
+      <input id="demo-basic-success" className="gv-input gv-input-success" type="text" value="GAVL Player" readOnly />
+      <div className="gv-form-helper">Field đang hợp lệ và sẵn sàng submit.</div>
+    </div>
+
+    <div className="gv-form-group">
+      <label className="gv-form-label" htmlFor="demo-basic-error">PASSWORD</label>
+      <input id="demo-basic-error" className="gv-input gv-input-error" type="password" value="123" readOnly />
+      <div className="gv-form-error">Mật khẩu phải có ít nhất 8 ký tự, gồm chữ và số.</div>
+    </div>
+
+    <div className="gv-form-group">
+      <label className="gv-form-label-vi" htmlFor="demo-basic-disabled">Mã tài khoản</label>
+      <input id="demo-basic-disabled" className="gv-input" type="text" value="GAVL-2026-001" disabled readOnly />
+      <div className="gv-form-helper">Field disabled dùng khi giá trị chỉ để xem, không cho chỉnh sửa.</div>
     </div>
   </div>
 </div>
@@ -28,33 +261,73 @@ GAVL UI cung cấp bộ class cho input text, select, textarea, helper text, err
 ```html
 <input class="gv-input" type="text" placeholder="Nhập nội dung" />
 <input class="gv-input gv-input-success" type="text" value="Hợp lệ" />
+<input class="gv-input gv-input-error" type="text" value="Sai định dạng" />
 ```
 
-## Select, textarea và error state
+## Select, textarea và helper/error text
+
+`Select` và `textarea` dùng cùng hệ thống state như `input`, nên bạn có thể áp dụng `.gv-input-error` và `.gv-input-success` theo cùng một quy tắc.
 
 <div className="docs-demo">
   <div className="docs-form-grid">
-    <select className="gv-select" defaultValue="mage">
-      <option value="warrior">Warrior</option>
-      <option value="mage">Mage</option>
-      <option value="archer">Archer</option>
-    </select>
-    <textarea className="gv-textarea gv-input-error" rows="4" defaultValue="Nội dung đang có lỗi validate." />
-    <div className="gv-form-error">Trường này cần ít nhất 20 ký tự.</div>
+    <div className="gv-form-group">
+      <label className="gv-form-label-vi" htmlFor="demo-role-select">Vai trò trong team</label>
+      <select id="demo-role-select" className="gv-select" defaultValue="mage">
+        <option value="warrior">Warrior</option>
+        <option value="mage">Mage</option>
+        <option value="archer">Archer</option>
+        <option value="support">Support</option>
+      </select>
+      <div className="gv-form-helper">Select có icon mũi tên sẵn, không cần thêm markup phụ.</div>
+    </div>
+
+    <div className="gv-form-group">
+      <label className="gv-form-label-vi" htmlFor="demo-textarea-normal">Giới thiệu bản thân</label>
+      <textarea id="demo-textarea-normal" className="gv-textarea" rows="4" defaultValue="Mình chơi vị trí hỗ trợ, thích phối hợp chiến thuật và tối ưu trải nghiệm cả đội." />
+      <div className="gv-form-helper">Textarea phù hợp cho mô tả dài, ghi chú hoặc nội dung phản hồi.</div>
+    </div>
+
+    <div className="gv-form-group">
+      <label className="gv-form-label-vi" htmlFor="demo-textarea-error">Lý do tham gia</label>
+      <textarea id="demo-textarea-error" className="gv-textarea gv-input-error" rows="4" defaultValue="Muốn tham gia." />
+      <div className="gv-form-error">Nội dung cần ít nhất 20 ký tự để đội ngũ review đủ thông tin.</div>
+    </div>
   </div>
 </div>
 
-## Input sizes và input group
+```html
+<select class="gv-select">
+  <option>Support</option>
+  <option>Mage</option>
+</select>
+
+<textarea class="gv-textarea" rows="4"></textarea>
+<textarea class="gv-textarea gv-input-error" rows="4"></textarea>
+```
+
+## Kích thước và input group
+
+Sử dụng size để tạo phân cấp thị giác, còn `input group` hữu ích khi field có tiền tố hoặc hậu tố cố định.
 
 <div className="docs-demo">
   <div className="docs-form-grid">
-    <input className="gv-input-sm" type="text" placeholder="Input nhỏ" />
-    <input className="gv-input" type="text" placeholder="Input mặc định" />
-    <input className="gv-input-lg" type="text" placeholder="Input lớn" />
+    <input className="gv-input-sm" type="text" placeholder="Input nhỏ cho filter hoặc mã ngắn" />
+    <input className="gv-input" type="text" placeholder="Input mặc định cho hầu hết use case" />
+    <input className="gv-input-lg" type="text" placeholder="Input lớn cho search bar hoặc field nổi bật" />
 
     <div className="gv-input-group">
       <span className="gv-input-addon gv-input-addon-left">@</span>
       <input className="gv-input" type="text" placeholder="username" />
+    </div>
+
+    <div className="gv-input-group">
+      <span className="gv-input-addon gv-input-addon-left">https://</span>
+      <input className="gv-input" type="text" placeholder="gavl.io/profile" />
+    </div>
+
+    <div className="gv-input-group">
+      <input className="gv-input" type="text" placeholder="subdomain" />
+      <span className="gv-input-addon gv-input-addon-right">.gavl.app</span>
     </div>
   </div>
 </div>
@@ -64,9 +337,178 @@ GAVL UI cung cấp bộ class cho input text, select, textarea, helper text, err
   <span class="gv-input-addon gv-input-addon-left">@</span>
   <input class="gv-input" type="text" placeholder="username" />
 </div>
+
+<div class="gv-input-group">
+  <input class="gv-input" type="text" placeholder="subdomain" />
+  <span class="gv-input-addon gv-input-addon-right">.gavl.app</span>
+</div>
 ```
 
-## Ghi chú
+## Checkbox, radio và toggle
 
-- `.gv-form-label-vi` phù hợp hơn khi label chứa tiếng Việt dài.
-- Modal, submit, validation state vẫn cần JavaScript của ứng dụng để điều khiển hành vi.
+Ngoài text field, GAVL UI cũng có các control chọn trạng thái. Chúng phù hợp cho consent, lựa chọn một trong nhiều phương án, hoặc cài đặt bật/tắt.
+
+<div className="docs-demo">
+  <div className="docs-demo-stack">
+    <div className="docs-form-grid docs-form-grid--two">
+      <label className="gv-check-group" htmlFor="demo-checkbox-1">
+        <input id="demo-checkbox-1" type="checkbox" defaultChecked />
+        <span className="gv-check-box" />
+        <span className="gv-check-label">Tôi đồng ý với điều khoản sử dụng</span>
+      </label>
+
+      <label className="gv-check-group" htmlFor="demo-checkbox-2">
+        <input id="demo-checkbox-2" type="checkbox" />
+        <span className="gv-check-box" />
+        <span className="gv-check-label">Nhận bản tin sản phẩm qua email</span>
+      </label>
+    </div>
+
+    <div className="docs-form-grid docs-form-grid--two">
+      <label className="gv-check-group" htmlFor="demo-radio-public">
+        <input id="demo-radio-public" type="radio" name="profile-visibility" defaultChecked />
+        <span className="gv-radio-box" />
+        <span className="gv-check-label">Hồ sơ công khai</span>
+      </label>
+
+      <label className="gv-check-group" htmlFor="demo-radio-private">
+        <input id="demo-radio-private" type="radio" name="profile-visibility" />
+        <span className="gv-radio-box" />
+        <span className="gv-check-label">Chỉ mình tôi thấy</span>
+      </label>
+    </div>
+
+    <div className="docs-form-grid docs-form-grid--two">
+      <label className="gv-toggle" htmlFor="demo-toggle-security">
+        <input id="demo-toggle-security" type="checkbox" defaultChecked />
+        <span className="gv-toggle-track" />
+        <span className="gv-toggle-label">Bật xác thực hai lớp</span>
+      </label>
+
+      <label className="gv-toggle" htmlFor="demo-toggle-sound">
+        <input id="demo-toggle-sound" type="checkbox" />
+        <span className="gv-toggle-track" />
+        <span className="gv-toggle-label">Âm thanh thông báo</span>
+      </label>
+    </div>
+  </div>
+</div>
+
+```html
+<label class="gv-check-group">
+  <input type="checkbox" checked />
+  <span class="gv-check-box"></span>
+  <span class="gv-check-label">Tôi đồng ý với điều khoản sử dụng</span>
+</label>
+
+<label class="gv-toggle">
+  <input type="checkbox" checked />
+  <span class="gv-toggle-track"></span>
+  <span class="gv-toggle-label">Bật xác thực hai lớp</span>
+</label>
+```
+
+## Ví dụ thực tế
+
+### Form đăng ký tài khoản
+
+<div className="docs-demo">
+  <div className="gv-card">
+    <div className="gv-card-body">
+      <div className="gv-card-title-vi">Tạo tài khoản GAVL</div>
+      <div className="docs-form-grid" style={{ marginTop: '14px' }}>
+        <div className="docs-form-grid docs-form-grid--two">
+          <div className="gv-form-group">
+            <label className="gv-form-label-vi" htmlFor="signup-name">Họ và tên</label>
+            <input id="signup-name" className="gv-input" type="text" placeholder="Nguyễn Văn A" />
+          </div>
+          <div className="gv-form-group">
+            <label className="gv-form-label-vi" htmlFor="signup-email">Email</label>
+            <input id="signup-email" className="gv-input" type="email" placeholder="ban@example.com" />
+          </div>
+        </div>
+
+        <div className="docs-form-grid docs-form-grid--two">
+          <div className="gv-form-group">
+            <label className="gv-form-label" htmlFor="signup-password">PASSWORD</label>
+            <input id="signup-password" className="gv-input" type="password" placeholder="••••••••" />
+            <div className="gv-form-helper">Nên có ít nhất 8 ký tự, gồm chữ hoa, chữ thường và số.</div>
+          </div>
+          <div className="gv-form-group">
+            <label className="gv-form-label" htmlFor="signup-plan">PLAN</label>
+            <select id="signup-plan" className="gv-select" defaultValue="pro">
+              <option value="free">Free</option>
+              <option value="pro">Pro</option>
+              <option value="team">Team</option>
+            </select>
+          </div>
+        </div>
+
+        <label className="gv-check-group" htmlFor="signup-consent">
+          <input id="signup-consent" type="checkbox" defaultChecked />
+          <span className="gv-check-box" />
+          <span className="gv-check-label">Tôi đồng ý với điều khoản và chính sách bảo mật</span>
+        </label>
+      </div>
+    </div>
+    <div className="gv-card-footer" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+      <button type="button" className="gv-btn gv-btn-primary">Tạo tài khoản</button>
+      <button type="button" className="gv-btn gv-btn-ghost">Đăng nhập</button>
+    </div>
+  </div>
+</div>
+
+### Form cập nhật hồ sơ có lỗi
+
+<div className="docs-demo">
+  <div className="gv-card">
+    <div className="gv-card-body">
+      <div className="gv-card-title-vi">Cập nhật hồ sơ cá nhân</div>
+      <div className="docs-form-grid" style={{ marginTop: '14px' }}>
+        <div className="gv-alert gv-alert-warning">
+          <span className="gv-alert-icon">⚠</span>
+          <div>
+            <div className="gv-alert-title">Kiểm tra lại thông tin</div>
+            Một số trường chưa hợp lệ nên hồ sơ chưa thể được lưu.
+          </div>
+        </div>
+
+        <div className="gv-form-group">
+          <label className="gv-form-label-vi" htmlFor="profile-slug">Đường dẫn hồ sơ</label>
+          <div className="gv-input-group">
+            <span className="gv-input-addon gv-input-addon-left">gavl.io/u/</span>
+            <input id="profile-slug" className="gv-input gv-input-error" type="text" value="Tên Có Dấu" readOnly />
+          </div>
+          <div className="gv-form-error">Slug chỉ nên chứa chữ thường, số và dấu gạch ngang.</div>
+        </div>
+
+        <div className="gv-form-group">
+          <label className="gv-form-label-vi" htmlFor="profile-bio">Giới thiệu bản thân</label>
+          <textarea id="profile-bio" className="gv-textarea gv-input-error" rows="4" defaultValue="Designer." />
+          <div className="gv-form-error">Phần giới thiệu quá ngắn. Hãy cung cấp đủ ngữ cảnh về kỹ năng hoặc vai trò.</div>
+        </div>
+      </div>
+    </div>
+    <div className="gv-card-footer" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+      <button type="button" className="gv-btn gv-btn-danger">Sửa lỗi và lưu lại</button>
+      <button type="button" className="gv-btn gv-btn-secondary">Huỷ thay đổi</button>
+    </div>
+  </div>
+</div>
+
+## Khi nào dùng class nào
+
+- Dùng `.gv-form-label` khi label ngắn, thiên về UI token hoặc field name viết gọn.
+- Dùng `.gv-form-label-vi` khi nội dung là tiếng Việt tự nhiên, dài hơn hoặc cần dễ đọc hơn pixel font.
+- Dùng `.gv-form-helper` cho hướng dẫn trước khi người dùng nhập, ví dụ định dạng, giới hạn hoặc tác động của field.
+- Dùng `.gv-form-error` cho lỗi inline gắn trực tiếp với field cụ thể.
+- Dùng `Alert` ở đầu form khi có lỗi tổng quan, lỗi từ server hoặc thông báo submit thành công.
+- Dùng `.gv-input-group` khi một phần giá trị là cố định và không nên để người dùng sửa.
+
+## Ghi chú triển khai
+
+- Validation state không tự sinh; bạn cần thêm hoặc gỡ `.gv-input-error` và `.gv-input-success` bằng JavaScript của ứng dụng.
+- Không nên dùng `.gv-input-success` cho mọi field sau mỗi lần gõ. Chỉ hiển thị khi thực sự có giá trị xác nhận, ví dụ username hợp lệ hoặc submit thành công.
+- Với form dài, nên nhóm field thành từng section nhỏ và đặt `Alert` tổng quan ở đầu section thay vì chỉ ở cuối.
+- `disabled` chỉ phù hợp khi field hoàn toàn không tương tác. Nếu vẫn cần submit giá trị hoặc muốn người dùng copy nội dung, cân nhắc `readOnly`.
+- Với tiếng Việt dài, ưu tiên `.gv-form-label-vi` để tránh giảm khả năng đọc của label.

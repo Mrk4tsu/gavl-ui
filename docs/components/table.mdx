@@ -1,0 +1,484 @@
+---
+sidebar_position: 9
+title: Table
+description: Bảng dữ liệu với container cuộn ngang, header nổi bật và zebra row của GAVL UI.
+---
+
+# Table
+
+`Table` trong GAVL UI dùng hai class chính:
+
+- `.gv-table-wrap` cho container ngoài, chịu trách nhiệm bo góc, đổ bóng và cho phép cuộn ngang khi bảng rộng hơn vùng hiển thị.
+- `.gv-table` cho chính phần tử `table`, định nghĩa typography, header, zebra row và hover state.
+
+Table này phù hợp cho dashboard, danh sách dữ liệu nội bộ, lịch sử giao dịch, leaderboard hoặc các bảng quản trị cần đọc nhanh. Sorting, filtering, pagination, sticky header hay row selection vẫn là trách nhiệm của JavaScript ứng dụng.
+
+## Tổng quan nhanh
+
+<div className="docs-demo">
+  <div className="docs-table-overview">
+    <div className="docs-demo-surface">
+      <div className="gv-label">TABLE SHELL</div>
+      <p className="docs-demo-note">Bọc `table` bên trong `.gv-table-wrap` để có khung hoàn chỉnh và tránh vỡ layout trên màn hình hẹp.</p>
+      <div className="gv-table-wrap">
+        <table className="gv-table docs-table-tight">
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Vai trò</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>.gv-table-wrap</td>
+              <td>Container responsive với border, radius, shadow và horizontal scroll.</td>
+            </tr>
+            <tr>
+              <td>.gv-table</td>
+              <td>Bảng dữ liệu chính với typography, header, zebra row và hover state.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div className="docs-demo-surface">
+      <div className="gv-label">VISUAL BEHAVIOR</div>
+      <div className="docs-table-chip-list" style={{ marginTop: '12px' }}>
+        <span className="docs-table-chip">Header nền đậm</span>
+        <span className="docs-table-chip">Row xen kẽ màu</span>
+        <span className="docs-table-chip">Hover rõ ràng</span>
+        <span className="docs-table-chip">Min width 480px</span>
+        <span className="docs-table-chip">Cuộn ngang an toàn</span>
+      </div>
+      <p className="docs-demo-note">
+        Mặc định bảng không phải dạng compact data grid. Nó ưu tiên tính dễ đọc, độ tương phản và cảm giác “panel” phù hợp với visual style của GAVL UI.
+      </p>
+    </div>
+  </div>
+</div>
+
+## Cấu trúc chuẩn
+
+```html
+<div class="gv-table-wrap">
+  <table class="gv-table">
+    <thead>
+      <tr>
+        <th>Tên</th>
+        <th>Vai trò</th>
+        <th>Trạng thái</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>GAVL Player</td>
+        <td>Support</td>
+        <td>Active</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+```
+
+## Demo cơ bản
+
+<div className="docs-demo">
+  <div className="gv-table-wrap">
+    <table className="gv-table">
+      <thead>
+        <tr>
+          <th>Người chơi</th>
+          <th>Vai trò</th>
+          <th>Guild</th>
+          <th>Trạng thái</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Lyra</td>
+          <td>Support</td>
+          <td>Moonfall</td>
+          <td>Online</td>
+        </tr>
+        <tr>
+          <td>Kael</td>
+          <td>Mage</td>
+          <td>Ember Core</td>
+          <td>In Match</td>
+        </tr>
+        <tr>
+          <td>Riven</td>
+          <td>Tank</td>
+          <td>Iron Keep</td>
+          <td>Offline</td>
+        </tr>
+        <tr>
+          <td>Aeris</td>
+          <td>Archer</td>
+          <td>Skypath</td>
+          <td>Ready</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+## Playground ngữ cảnh
+
+Bấm để xem cùng một `table` được đặt trong các ngữ cảnh dữ liệu khác nhau. API CSS không đổi, chỉ thay nội dung và cách nhóm dữ liệu.
+
+<div className="docs-demo docs-table-playground">
+  <input id="table-view-members" className="docs-table-toggle" type="radio" name="table-view" defaultChecked />
+  <input id="table-view-billing" className="docs-table-toggle" type="radio" name="table-view" />
+  <input id="table-view-leaderboard" className="docs-table-toggle" type="radio" name="table-view" />
+
+  <div className="docs-table-toolbar">
+    <span className="docs-demo-label">Ngữ cảnh</span>
+    <div className="docs-table-controls">
+      <label htmlFor="table-view-members" className="docs-table-control">Members</label>
+      <label htmlFor="table-view-billing" className="docs-table-control">Billing</label>
+      <label htmlFor="table-view-leaderboard" className="docs-table-control">Leaderboard</label>
+    </div>
+  </div>
+
+  <div className="docs-table-canvas">
+    <div className="docs-table-preview docs-table-preview--members">
+      <div className="docs-table-panel">
+        <div className="docs-table-panel-header">
+          <div>
+            <div className="gv-card-title-vi">Danh sách thành viên</div>
+            <div className="gv-caption">Ví dụ bảng quản trị người dùng nội bộ.</div>
+          </div>
+          <button type="button" className="gv-btn gv-btn-primary gv-btn-sm">Thêm thành viên</button>
+        </div>
+
+        <div className="gv-table-wrap">
+          <table className="gv-table">
+            <thead>
+              <tr>
+                <th>Tên</th>
+                <th>Vai trò</th>
+                <th>Email</th>
+                <th>Trạng thái</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Nguyễn Hoài An</td>
+                <td>Admin</td>
+                <td>an@gavl.io</td>
+                <td>Active</td>
+              </tr>
+              <tr>
+                <td>Trần Mai Vy</td>
+                <td>Editor</td>
+                <td>vy@gavl.io</td>
+                <td>Invited</td>
+              </tr>
+              <tr>
+                <td>Phạm Gia Huy</td>
+                <td>Viewer</td>
+                <td>huy@gavl.io</td>
+                <td>Suspended</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div className="docs-table-preview docs-table-preview--billing">
+      <div className="docs-table-panel">
+        <div className="docs-table-panel-header">
+          <div>
+            <div className="gv-card-title-vi">Lịch sử thanh toán</div>
+            <div className="gv-caption">Bảng giao dịch, mã hoá đơn và thời gian xử lý.</div>
+          </div>
+          <button type="button" className="gv-btn gv-btn-secondary gv-btn-sm">Xuất CSV</button>
+        </div>
+
+        <div className="gv-table-wrap">
+          <table className="gv-table">
+            <thead>
+              <tr>
+                <th>Invoice</th>
+                <th>Plan</th>
+                <th>Ngày tạo</th>
+                <th>Số tiền</th>
+                <th>Trạng thái</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>#INV-2026-041</td>
+                <td>Pro</td>
+                <td>23/04/2026</td>
+                <td>$29.00</td>
+                <td>Paid</td>
+              </tr>
+              <tr>
+                <td>#INV-2026-040</td>
+                <td>Team</td>
+                <td>20/04/2026</td>
+                <td>$79.00</td>
+                <td>Pending</td>
+              </tr>
+              <tr>
+                <td>#INV-2026-039</td>
+                <td>Pro</td>
+                <td>18/04/2026</td>
+                <td>$29.00</td>
+                <td>Refunded</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div className="docs-table-preview docs-table-preview--leaderboard">
+      <div className="docs-table-panel">
+        <div className="docs-table-panel-header">
+          <div>
+            <div className="gv-card-title-vi">Season leaderboard</div>
+            <div className="gv-caption">Bảng xếp hạng phù hợp cho số liệu ngắn, scan nhanh.</div>
+          </div>
+          <button type="button" className="gv-btn gv-btn-dark gv-btn-sm">Xem season</button>
+        </div>
+
+        <div className="gv-table-wrap">
+          <table className="gv-table">
+            <thead>
+              <tr>
+                <th>Hạng</th>
+                <th>Đội</th>
+                <th>Điểm</th>
+                <th>Win</th>
+                <th>Lose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>#1</td>
+                <td>Night Bloom</td>
+                <td>1480</td>
+                <td>42</td>
+                <td>8</td>
+              </tr>
+              <tr>
+                <td>#2</td>
+                <td>Iron Vale</td>
+                <td>1435</td>
+                <td>39</td>
+                <td>11</td>
+              </tr>
+              <tr>
+                <td>#3</td>
+                <td>Solar Rift</td>
+                <td>1402</td>
+                <td>37</td>
+                <td>13</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p className="docs-demo-note">
+    Vì `.gv-table` không có variant riêng, cách tạo khác biệt chủ yếu đến từ nội dung cột, cách nhóm thông tin và các action đặt quanh bảng.
+  </p>
+</div>
+
+## Anatomy
+
+| Class | Bắt buộc | Vai trò |
+|---|---|---|
+| `.gv-table-wrap` | Nên có | Tạo shell hoàn chỉnh cho bảng: border, radius, shadow và `overflow-x: auto` |
+| `.gv-table` | Có | Áp dụng typography, `min-width`, header style, zebra row và hover state |
+| `thead` | Nên có | Chứa tên cột, giúp người dùng scan dữ liệu nhanh hơn |
+| `tbody` | Có | Chứa dữ liệu chính theo từng hàng |
+| `th` | Có | Tiêu đề cột, được tự động uppercase và giữ `white-space: nowrap` |
+| `td` | Có | Ô dữ liệu, được áp padding và font weight mặc định |
+
+## Hành vi mặc định
+
+- Header dùng nền nâu đậm để phân tách rõ phần tên cột với dữ liệu.
+- Các hàng trong `tbody` có zebra row mặc định qua `nth-child(even)`.
+- Hover trên hàng giúp theo dõi ngang mắt tốt hơn khi bảng rộng.
+- `min-width: 480px` giúp bố cục không bị bóp méo quá mức trên mobile.
+- `overflow-x: auto` ở `.gv-table-wrap` đảm bảo bảng vẫn dùng được trên màn hình hẹp.
+
+## Responsive và cuộn ngang
+
+Nếu bảng có nhiều cột, không nên cố ép nó co lại bằng CSS phụ. Thiết kế hiện tại ưu tiên giữ cấu trúc bảng ổn định và cho cuộn ngang trong container.
+
+<div className="docs-demo">
+  <div className="gv-table-wrap">
+    <table className="gv-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Tên gói</th>
+          <th>Người phụ trách</th>
+          <th>Ngày bắt đầu</th>
+          <th>Ngày gia hạn</th>
+          <th>Chu kỳ</th>
+          <th>Ngân sách</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>SUB-001</td>
+          <td>Enterprise Guild Plan</td>
+          <td>Linh Trần</td>
+          <td>01/03/2026</td>
+          <td>01/05/2026</td>
+          <td>Monthly</td>
+          <td>$1,280</td>
+        </tr>
+        <tr>
+          <td>SUB-002</td>
+          <td>Creator Studio Pro</td>
+          <td>Minh Võ</td>
+          <td>15/03/2026</td>
+          <td>15/06/2026</td>
+          <td>Quarterly</td>
+          <td>$760</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p className="docs-demo-note">Trên màn hình hẹp, người dùng có thể cuộn ngang trong khung bảng thay vì làm vỡ layout toàn trang.</p>
+</div>
+
+## Ví dụ thực tế
+
+### Table trong dashboard quản trị
+
+<div className="docs-demo">
+  <div className="gv-card">
+    <div className="gv-card-body">
+      <div className="docs-table-panel-header">
+        <div>
+          <div className="gv-card-title-vi">Yêu cầu hỗ trợ gần đây</div>
+          <div className="gv-caption">Bảng phù hợp với danh sách ticket, job queue hoặc lịch sử đồng bộ.</div>
+        </div>
+        <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+          <button type="button" className="gv-btn gv-btn-ghost gv-btn-sm">Lọc</button>
+          <button type="button" className="gv-btn gv-btn-primary gv-btn-sm">Tạo ticket</button>
+        </div>
+      </div>
+    </div>
+    <div style={{ padding: '0 18px 18px' }}>
+      <div className="gv-table-wrap">
+        <table className="gv-table">
+          <thead>
+            <tr>
+              <th>Ticket</th>
+              <th>Khách hàng</th>
+              <th>Mức độ</th>
+              <th>Người xử lý</th>
+              <th>Cập nhật cuối</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>#CS-214</td>
+              <td>Atlas Studio</td>
+              <td>High</td>
+              <td>Thu Phạm</td>
+              <td>5 phút trước</td>
+            </tr>
+            <tr>
+              <td>#CS-213</td>
+              <td>Nova Guild</td>
+              <td>Medium</td>
+              <td>Nam Lê</td>
+              <td>18 phút trước</td>
+            </tr>
+            <tr>
+              <td>#CS-212</td>
+              <td>Cloud Arena</td>
+              <td>Low</td>
+              <td>Khánh Đoàn</td>
+              <td>1 giờ trước</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+### Table kết hợp với filter form
+
+<div className="docs-demo">
+  <div className="docs-form-grid">
+    <div className="docs-form-grid docs-form-grid--two">
+      <div className="gv-form-group">
+        <label className="gv-form-label-vi" htmlFor="table-filter-search">Tìm theo tên dự án</label>
+        <input id="table-filter-search" className="gv-input" type="text" placeholder="Nhập tên dự án hoặc khách hàng" />
+      </div>
+      <div className="gv-form-group">
+        <label className="gv-form-label-vi" htmlFor="table-filter-status">Trạng thái</label>
+        <select id="table-filter-status" className="gv-select" defaultValue="all">
+          <option value="all">Tất cả</option>
+          <option value="active">Đang hoạt động</option>
+          <option value="paused">Tạm dừng</option>
+          <option value="done">Hoàn thành</option>
+        </select>
+      </div>
+    </div>
+
+    <div className="gv-table-wrap">
+      <table className="gv-table">
+        <thead>
+          <tr>
+            <th>Dự án</th>
+            <th>Owner</th>
+            <th>Tiến độ</th>
+            <th>Trạng thái</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Onboarding Revamp</td>
+            <td>Mai Anh</td>
+            <td>72%</td>
+            <td>Đang hoạt động</td>
+          </tr>
+          <tr>
+            <td>Creator Billing</td>
+            <td>Quốc Bảo</td>
+            <td>45%</td>
+            <td>Tạm dừng</td>
+          </tr>
+          <tr>
+            <td>Guild Analytics</td>
+            <td>Thanh Vy</td>
+            <td>100%</td>
+            <td>Hoàn thành</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+## Khi nào nên dùng table
+
+- Dùng `table` khi người dùng cần đọc quan hệ theo cột và so sánh ngang giữa nhiều bản ghi.
+- Dùng `card list` thay cho `table` khi mỗi item có quá nhiều metadata hoặc nội dung dài, không phù hợp quét theo hàng.
+- Dùng `table` cho dữ liệu bán cấu trúc, ngắn gọn, lặp lại theo schema ổn định.
+- Nếu cần hành vi nâng cao như sort nhiều cột, resize cột, sticky column hoặc virtualized row, nên xem `gv-table` là lớp skin cho giải pháp JS mạnh hơn.
+
+## Ghi chú triển khai
+
+- Luôn bọc trong `.gv-table-wrap`, kể cả khi bảng hiện tại chưa rộng; điều này giữ giao diện nhất quán và xử lý tốt hơn khi dữ liệu tăng.
+- Không nên nhét nội dung quá dài vào một ô mà không có chiến lược cắt dòng hoặc truncate ở tầng ứng dụng.
+- Với cột hành động, nên giữ text ngắn hoặc dùng button size nhỏ để tránh bảng bị nặng.
+- Nếu cần empty state, render một hàng duy nhất hoặc đặt empty state bên ngoài `.gv-table-wrap` tùy flow của màn hình.
+- Nếu dữ liệu thay đổi theo filter/search, phần loading skeleton hoặc spinner nên nằm ở tầng ứng dụng, không phải CSS của `table`.
