@@ -129,7 +129,7 @@ export default function Home(): React.ReactElement {
                         </Link>
                         <a
                             className={styles.btnGhost}
-                            href="https://github.com/gavl-io/gavl-ui"
+                            href="https://github.com/mrk4tsu/gavl-ui"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
